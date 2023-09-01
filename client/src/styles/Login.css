@@ -1,0 +1,170 @@
+/* Login.css */
+
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: "Quicksand", sans-serif; 
+  }
+  
+  /* Contenedor principal */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Contenedor de ancho completo */
+  .full-width-container {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    height: 80%;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Sección izquierda */
+  .half-section {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    color: #333;
+    border-right: 2px solid #ccc;
+  }
+  
+  /* Fondo blanco */
+  .white-background {
+    background-color: white;
+  }
+  
+  /* Sección derecha */
+  .green-background {
+    background-color: #C0D6B1;
+  }
+  
+  /* Grupo de formularios */
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    gap: 10px;
+    width: 100%;
+  }
+  
+  /* Campos de entrada */
+  input {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    width: 60%; 
+    height: 30px;
+    margin-top: 15px;
+    font-family: "Quicksand", sans-serif;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); 
+  }
+  
+  /* Botones */
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Quicksand", sans-serif; 
+  }
+  
+  /* Botón "Olvidaste tu contraseña?" */
+  .forgot-password-button {
+    background-color: white;
+    color: #668461;
+    border: none;
+    font-family: "Quicksand", sans-serif; 
+    font-style: bold;
+  }
+  .forgot-password-button:active {
+    background-color: #668461;
+    color: #E8E3C4;
+  }
+  
+  /* Botón "Inicio de Sesión" */
+.login-button {
+    background-color: #E8E3C4;
+    color: #668461;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+    font-family: "Quicksand", sans-serif; /* Agrega la fuente Quicksand */
+    transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave */
+  }
+  
+  /* Invertir colores cuando se hace clic en el botón */
+  .login-button:active {
+    background-color: #668461;
+    color: #E8E3C4;
+  }
+  
+  
+  /* Título de la sección */
+  .section-title {
+    font-family: "Quicksand", sans-serif;
+    font-weight: lighter;
+    font-style: oblique;
+    font-size: 40px;
+    color: #668461;
+    margin-bottom: 60px;
+  }
+  
+  /* Imagen del logo */
+  .logo {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Botón "Olvidaste tu contraseña?" */
+  .register-button {
+    background-color: white;
+    color: #668461;
+    border: none;
+    margin-top: 40px;
+    font-family: "Quicksand", sans-serif; 
+    font-style: bold;
+  }
+  .register-button:active {
+    background-color: #668461;
+    color: #E8E3C4;
+  }
+
+ /* Estilos para los botones de redes sociales */
+.social-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para las imágenes dentro de los botones */
+  .social-button img {
+    width: 30px; /* Ajusta el ancho de los iconos según tus preferencias */
+    height: 30px; /* Ajusta la altura de los iconos según tus preferencias */
+  }
+  
+  /* Cambios de color al pasar el mouse sobre los botones */
+  .social-button:hover {
+    background-color: #668461;
+    border-radius: 40%;
+    transition: background-color 0.3s; 
+  }
+  
+
+  
+  
