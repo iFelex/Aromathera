@@ -21,18 +21,20 @@ try {
   console.log(`Error de conexion: ${error}`)
 }
 
-// Ruta para el inicio de sesión
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
 
   // Imprime las credenciales en la consola
   console.log('Credenciales de inicio de sesión recibidas:');
-  
+  console.log(username, password);
+
   if(username == "Daniel" && password == "qwerty123"){
     console.log("acceso concedido\n");
-    res.redirect('/api/Home');
+    // Agrega un 1 a la respuesta
+    res.status(200).send({ acceso: true });
   }else{
     console.log("acceso denegado\n");
+    res.status(401).send({ acceso: false });
   }
 });
 

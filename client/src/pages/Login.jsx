@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'; // Importa useHistory para manejar la redirección
 import '../styles/Login.css';
 import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import axios from 'axios';
+import { Link, Navigate } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory(); // Inicializa useHistory para redireccionar
+  const [redirectToHome, setRedirectToHome] = useState(false);
+  const [error, setError] = useState('');
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -29,17 +30,20 @@ function Login() {
         password,
       });
 
-      if (response.status === 200 && response.data.isLoggedIn) {
-        // Si el inicio de sesión fue exitoso (y response.data.isLoggedIn es verdadero)
-        console.log('Inicio de sesión exitoso');
-        history.push('/home'); // Redirecciona a la página Home.jsx
+      // Si el usuario se ha autenticado correctamente, navega a /home
+      if (response.status === 200 && response.data.acceso) {
+        setRedirectToHome(true);
       } else {
-        console.error('Inicio de sesión fallido');
+        setError('Credenciales incorrectas');
       }
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);
     }
   };
+
+  if (redirectToHome) {
+    return <Navigate to="/home" />;
+  }
 
   return (
     <div className="login-container">
@@ -47,6 +51,7 @@ function Login() {
         <div className="half-section white-background">
           <h2 className="section-title">Iniciar de Sesión</h2>
           <form onSubmit={handleSubmit}>
+            {error && <p className="error-message">{error}</p>}
             <div className="input-group">
               <input
                 type="text"
