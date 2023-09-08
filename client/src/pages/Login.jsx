@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'; // Importa useHistory para manejar la redirección
 import '../styles/Login.css';
 import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
@@ -9,6 +10,7 @@ import axios from 'axios';
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory(); // Inicializa useHistory para redireccionar
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -19,28 +21,24 @@ function Login() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Evita que el formulario se envíe y la página se recargue
-
-    console.log('Correo Electrónico:', username);
-    console.log('Contraseña:', password);
+    event.preventDefault();
 
     try {
-        const response = await axios.post('http://localhost:3001/api/login', {
-          username,
-          password,
-        });
-  
-        if (response.status === 200) {
-          // El inicio de sesión fue exitoso
-          const data = response.data;
-          console.log(data.message);
-        } else {
-          // El inicio de sesión falló
-          console.error('Inicio de sesión fallido');
-        }
-      } catch (error) {
-        console.error('Error al enviar la solicitud:', error);
+      const response = await axios.post('http://localhost:3001/api/login', {
+        username,
+        password,
+      });
+
+      if (response.status === 200 && response.data.isLoggedIn) {
+        // Si el inicio de sesión fue exitoso (y response.data.isLoggedIn es verdadero)
+        console.log('Inicio de sesión exitoso');
+        history.push('/home'); // Redirecciona a la página Home.jsx
+      } else {
+        console.error('Inicio de sesión fallido');
       }
+    } catch (error) {
+      console.error('Error al enviar la solicitud:', error);
+    }
   };
 
   return (
@@ -48,7 +46,7 @@ function Login() {
       <div className="full-width-container">
         <div className="half-section white-background">
           <h2 className="section-title">Iniciar de Sesión</h2>
-          <form onSubmit={handleSubmit}> {/* Agrega un formulario para manejar el evento onSubmit */}
+          <form onSubmit={handleSubmit}>
             <div className="input-group">
               <input
                 type="text"

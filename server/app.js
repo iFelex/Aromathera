@@ -1,6 +1,10 @@
-const express = require('express');
+import express from "express"
+import cors from 'cors'
+//importar la configuracion de la data base
+import db from "./config/db.js";
+import soapRoutes from './routes/routes.js';
+//import soapRoutes from '.routes/routes.js'
 const app = express();
-const cors = require('cors');
 const PORT = 3001; 
 
 // Middleware para analizar datos JSON en las solicitudes
@@ -8,6 +12,14 @@ app.use(express.json());
 
 // Habilita CORS para permitir solicitudes desde http://localhost:5173
 app.use(cors({ origin: 'http://localhost:5173' }));
+app.use('/soaps', soapRoutes)
+
+try {
+  await db.authenticate()
+  console.log('Conexion a la base de datos')
+} catch (error) {
+  console.log(`Error de conexion: ${error}`)
+}
 
 // Ruta para el inicio de sesión
 app.post('/api/login', (req, res) => {
@@ -16,19 +28,15 @@ app.post('/api/login', (req, res) => {
   // Imprime las credenciales en la consola
   console.log('Credenciales de inicio de sesión recibidas:');
   
-  if(username == "Daniel" && password == "querty123"){
+  if(username == "Daniel" && password == "qwerty123"){
     console.log("acceso concedido\n");
+    res.redirect('/api/Home');
   }else{
     console.log("acceso denegado\n");
   }
-
-  // Puedes realizar la lógica de autenticación aquí, por ejemplo, verificar las credenciales
-
-  // Simulación de una respuesta exitosa
-  res.status(200).json({ message: 'Inicio de sesión exitoso' });
 });
 
 // Inicia el servidor
 app.listen(PORT, () => {
-  console.log(`Servidor backend escuchando en el puerto ${PORT}`);
+  console.log(`Servidor backend escuchando en http://localhost:3001`);
 });
