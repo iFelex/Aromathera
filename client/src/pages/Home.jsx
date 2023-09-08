@@ -6,41 +6,61 @@ import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
+import jabon1 from '../imgs/jabon1.jpg';
+import jabon2 from '../imgs/jabon2.jpg';
+import jabon3 from '../imgs/jabon3.jpg';
 import axios from 'axios';
 
 function Home() {
   return (
     <div className="home-container">
-      <div className="full-width-container">
-        <div className="sidebar green-background">
-          <div className="logo-container">
-            <img src={logo} alt="Logo" className="logo" />
+      <div className="full-width-container-home">
+        <div className="sidebar-home green-background-home">
+          <div className="logo-container-home">
+            <img src={logo} alt="Logo" className="logo-home" />
           </div>
-          <div className="menu">
-            <button className="menu-button">Inicio</button>
-            <button className="menu-button">Catálogo</button>
-            <button className="menu-button">Crea tu propio jabón</button>
-            <button className="menu-button">Historial</button>
-            <button className="menu-button">Nosotros</button>
-            <button className="menu-button">Cerrar Sesión</button>
+          <div className="menu-home">
+            <button className="menu-button-home">Inicio</button>
+            <button className="menu-button-home">Catálogo</button>
+            <button className="menu-button-home">Crea tu propio jabón</button>
+            <button className="menu-button-home">Historial</button>
+            <button className="menu-button-home">Nosotros</button>
+            <button className="menu-button-last-home">Cerrar Sesión</button>
           </div>
         </div>
-        <div className="content white-background">
-          <div className="carousel-container">
-            <Carousel>
+        <div className="content-home white-background-home">
+          <div className="carousel-container-home">
+            <Carousel
+              autoPlay
+              interval={5000}
+              showThumbs={false}
+              showStatus={false}
+              showIndicators={false}
+              infiniteLoop
+            >
               <div>
-                <img src="../imgs/jabon1.jpg" alt="Jabon 1" />
-                <p className="legend">Jabon 1</p>
+                <img src={jabon1} alt="Jabon 1" className="carousel-img-home" />
               </div>
               <div>
-                <img src="../imgs/jabon2.jpg" alt="IJabon 2" />
-                <p className="legend">Jabon 2</p>
+                <img src={jabon2} alt="Jabon 2" className="carousel-img-home" />
               </div>
               <div>
-                <img src="../imgs/jabon3.jpg" alt="Jabon 3" />
-                <p className="legend">Jabon 3</p>
+                <img src={jabon3} alt="Jabon 3" className="carousel-img-home" />
               </div>
             </Carousel>
+          </div>
+          {/* Botones de redes sociales */}
+          <div className="social-icons-home">
+            <h1 className='welcome-home'>Bienvenido! @Username</h1>
+            <button className="social-button-home">
+              <img src={facebook} alt="Facebook" className="social-button-img-home" />
+            </button>
+            <button className="social-button-home">
+              <img src={twitter} alt="Twitter" className="social-button-img-home" />
+            </button>
+            <button className="social-button-home">
+              <img src={instagram} alt="Instagram" className="social-button-img-home" />
+            </button>
           </div>
         </div>
       </div>

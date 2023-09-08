@@ -20,7 +20,7 @@ body {
 }
 
 /* Contenedor de ancho completo */
-.full-width-container {
+.full-width-container-home {
   display: flex;
   width: 100%;
   height: 100%;
@@ -28,7 +28,7 @@ body {
 }
 
 /* Barra lateral izquierda */
-.sidebar {
+.sidebar-home {
   width: 250px;
   padding: 20px;
   display: flex;
@@ -37,16 +37,18 @@ body {
   align-items: center;
   color: #333;
   border-right: 2px solid #ccc;
+  background-color: #C0D6B1;
 }
 
 /* Fondo blanco */
-.white-background {
-  background-color: white;
+.white-background-home {
+  background-color: #E8E3C4;
   flex: 1;
 }
 
+
 /* Logo centrado en la parte superior con margen superior ajustado */
-.logo-container {
+.logo-container-home {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -55,13 +57,13 @@ body {
 }
 
 /* Logo */
-.logo {
+.logo-home {
   max-width: 100%;
   max-height: 100%;
 }
 
 /* Estilo de los botones del menú con el color verde intercambiado */
-.menu {
+.menu-home {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -69,7 +71,7 @@ body {
   margin-top: 20px; /* Espaciado entre el logo y los botones */
 }
 
-.menu-button {
+.menu-button-home {
   background-color: #C0D6B1; /* Fondo igual al del panel izquierdo */
   color: #668461;
   border: none;
@@ -78,17 +80,18 @@ body {
   font-family: "Quicksand", sans-serif;
   font-weight: bold; /* Texto en negrita */
   font-size: 18px; /* Tamaño de letra más grande */
+  transition: background-color 0.3s; /* Agrega una transición suave */
 }
 
 /* Cambio de color de fondo al presionar y manteniendo el verde oscuro */
-.menu-button:active {
+.menu-button-home:active {
   background-color: #E8E3C4; /* Cambio de fondo al presionar */
   color: #668461; /* Mantener el color de texto al presionar */
 }
 
 /* Estilo del nuevo botón "Cerrar Sesión" */
 
-.menu-button:last-child {
+.menu-button-last-home {
   background-color: #C0D6B1;
   color: #668461;
   border: none;
@@ -99,27 +102,70 @@ body {
   align-self: center; /* Centra horizontalmente en el panel */
   position: absolute;
   bottom: 10px; /* Ajusta la distancia desde la parte inferior del panel */
+  transition: background-color 0.3s; /* Agrega una transición suave */
 }
 
 
 /* Cambio de color de fondo al presionar para el nuevo botón */
-.menu-button:last-child:active {
+.menu-button-last-home:active {
   background-color: #668461;
   color: #E8E3C4;
 }
 
-/* Contenedor del carrusel */
-.carousel-container {
+
+/* Estilo para el contenedor del carrusel en el panel derecho */
+.carousel-container-home {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Agrega esta línea para centrar horizontalmente */
   align-items: center;
-  height: 100%;
+  height: 78%;
+  background-color: #E8E3C4;
 }
 
-/* Estilo para las leyendas de las imágenes */
-.legend {
-  font-size: 14px;
-  text-align: center;
-  margin-top: 10px;
-  color: #333;
+
+/* Estilos para el carrusel en sí */
+.carousel-home {
+  max-width: 100%; /* Ajusta el ancho del carrusel según tus necesidades */
+}
+
+/* Estilo para las imágenes dentro del carrusel */
+.carousel-img-home {
+  max-width: 2000px; /* Ajusta el tamaño de las imágenes dentro del carrusel */
+  max-height: 700px;
+}
+
+ /* Estilos para los botones de redes sociales */
+ .social-button-home {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 82px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para las imágenes dentro de los botones */
+.social-button-img-home {
+  width: 30px; /* Ajusta el ancho de los iconos según tus preferencias */
+  height: 30px; /* Ajusta la altura de los iconos según tus preferencias */
+}
+
+/* Cambios de color al pasar el mouse sobre los botones */
+.social-button-home:hover {
+  background-color: #668461;
+  border-radius: 40%;
+  transition: background-color 0.3s; 
+}
+
+.social-icons-home {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.welcome-home {
+  margin-top: 82px;
+  margin-right: 250px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: lighter;
+  font-style: oblique;
 }
