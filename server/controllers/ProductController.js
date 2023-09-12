@@ -1,34 +1,34 @@
 //importar modelo de jabon
-import SoapModel from "../models/SoapModel.js";
+import ProductModel from "../models/ProductModel.js";
 
 //** Metodos para el CRUD */
 
 //Mostrar todos los registros
-export const getAllSoaps = async (req, res) => {
+export const getAllProducts = async (req, res) => {
     try {
-        const soaps =  await SoapModel.findAll();
-        res.json(soaps)
+        const products =  await ProductModel.findAll();
+        res.json(products)
     } catch (error) {
         res.json({message: error.message})
     }
 }
 
 //Mostrar registro
-export const getSoap = async (req, res) => {
+export const getProduct = async (req, res) => {
     try {
-        const soap = await SoapModel.findAll({
+        const product = await ProductModel.findAll({
             where:{ id: req.params.id }
         })
-        res.json(soap[0])
+        res.json(product[0])
     } catch (error) {
         res.json({message: error.message})
     }
 }
 
 //Crear registro
-export const createSoap = async (req, res) => {
+export const createProduct = async (req, res) => {
     try {
-        await SoapModel.create(req.body)
+        await ProductModel.create(req.body)
         res.json({"message":"Registro creado"})
     } catch (error) {
         res.json({message: error.message})
@@ -36,9 +36,9 @@ export const createSoap = async (req, res) => {
 }
 
 //Actualizar registro
-export const updateSoap = async (req, res) => {
+export const updateProduct = async (req, res) => {
     try {
-        SoapModel.update(req.body, {
+        ProductModel.update(req.body, {
             where: {id: req.params.id}
         })
         res.json({"message":"Registro actualizado"})
@@ -48,9 +48,9 @@ export const updateSoap = async (req, res) => {
 }
 
 //Eliminar registro
-export const deleteSoap = async (req, res) => {
+export const deleteProduct = async (req, res) => {
     try {
-        await SoapModel.destroy( {
+        await ProductModel.destroy( {
             where: {id: req.params.id}
         })
         res.json({"message":"Registro borrado"})
