@@ -4,6 +4,7 @@ import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
+import { Link } from 'react-router-dom';
 
 function Income() {
   // Datos del producto
@@ -37,9 +38,14 @@ function Income() {
             <img src={logo} alt="Logo" className="logo-income" />
           </div>
           <div className="menu-income">
-            <button className="menu-button-income">Inicio</button>
-            <button className="menu-button-income">Agregar producto</button>
-            <button className="menu-button-income">Historial</button>
+            <Link to="/homeAdmin">
+              <button className="menu-button-income" type="button">
+                Inicio
+              </button>
+            </Link>
+            <Link to="/inventory">
+              <button className="menu-button-income">Gestionar inventario</button>
+            </Link>
             <button className="menu-button-last-income">Cerrar Sesión</button>
           </div>
         </div>
@@ -47,27 +53,27 @@ function Income() {
           <div className="product-form-container">
             <h1>Detalles del Producto</h1>
             <form className="product-form">
-              <div className="form-group">
+              <div className="form-group-income">
                 <label>ID:</label>
                 <input type="text" value={product.id} readOnly />
               </div>
-              <div className="form-group">
+              <div className="form-group-income">
                 <label>Nombre:</label>
                 <input type="text" value={product.nombre} readOnly />
               </div>
-              <div className="form-group">
+              <div className="form-group-income">
                 <label>Presentación:</label>
                 <input type="text" value={product.presentacion} readOnly />
               </div>
-              <div className="form-group">
+              <div className="form-group-income">
                 <label>Stock:</label>
                 <input type="text" value={product.stock} readOnly />
               </div>
-              <div className="form-group">
+              <div className="form-group-income">
                 <label>Precio de Venta:</label>
                 <input type="text" value={product.precioVenta} readOnly />
               </div>
-              <div className="form-group">
+              <div className="form-group-income">
                 <label>Unidades a ingresar:</label>
                 <input
                   type="text"

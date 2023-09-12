@@ -5,6 +5,7 @@ import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
+import { Link } from 'react-router-dom';
 
 function Inventory() {
   // Define un estado para almacenar los datos de los productos
@@ -35,7 +36,9 @@ function Inventory() {
             <img src={logo} alt="Logo" className="logo-inventory" />
           </div>
           <div className="menu-inventory">
-            <button className="menu-button-inventory">Inicio</button>
+            <Link to="/homeAdmin">
+              <button className="menu-button-inventory">Inicio</button>
+            </Link>
             <button className="menu-button-inventory">Agregar producto</button>
             <button className="menu-button-inventory">Historial</button>
             <button className="menu-button-last-inventory">Cerrar Sesión</button>
@@ -77,7 +80,7 @@ function Inventory() {
                           <div className="dropdown-content">
                             <a href="/income">Ingreso</a>
                             <a href="/egress">Egreso</a>
-                            <a href="https://www.youtube.com/watch?v=2DITDrh0FL4">Modificar</a>
+                            <a href="/modify">Modificar</a>
                           </div>
                         )}
                       </div>

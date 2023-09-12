@@ -65,7 +65,7 @@ function Login() {
                 value={password}
                 onChange={handlePasswordChange}
               />
-              <Link to="/Inventory">
+              <Link to="/inventory">
                 <button className="forgot-password-button" type="button">
                 Olvidaste tu contraseña?
               </button>

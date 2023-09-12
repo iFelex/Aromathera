@@ -1,4 +1,4 @@
-/* egress.css */
+/* modify.css */
 
 /* Estilos generales */
 body {
@@ -12,7 +12,7 @@ body {
 }
 
 /* Contenedor principal */
-.egress-container {
+.modify-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +21,7 @@ body {
 }
 
 /* Contenedor de ancho completo */
-.full-width-container-egress {
+.full-width-container-modify {
   display: flex;
   width: 100%;
   height: 100%;
@@ -29,7 +29,7 @@ body {
 }
 
 /* Barra lateral izquierda */
-.sidebar-egress {
+.sidebar-modify {
   width: 250px;
   padding: 20px;
   display: flex;
@@ -42,13 +42,13 @@ body {
 }
 
 /* Fondo blanco */
-.white-background-egress {
+.white-background-modify {
   background-color: #E8E3C4;
   flex: 1;
 }
 
 /* Logo centrado en la parte superior con margen superior ajustado */
-.logo-container-egress {
+.logo-container-modify {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -57,13 +57,13 @@ body {
 }
 
 /* Logo */
-.logo-egress {
+.logo-modify {
   max-width: 100%;
   max-height: 100%;
 }
 
 /* Estilo de los botones del menú con el color verde intercambiado */
-.menu-egress {
+.menu-modify {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -71,7 +71,7 @@ body {
   margin-top: 20px; /* Espaciado entre el logo y los botones */
 }
 
-.menu-button-egress {
+.menu-button-modify {
   background-color: #C0D6B1; /* Fondo igual al del panel izquierdo */
   color: #668461;
   border: none;
@@ -84,13 +84,13 @@ body {
 }
 
 /* Cambio de color de fondo al presionar y manteniendo el verde oscuro */
-.menu-button-egress:active {
+.menu-button-modify:active {
   background-color: #E8E3C4; /* Cambio de fondo al presionar */
   color: #668461; /* Mantener el color de texto al presionar */
 }
 
 /* Estilo del nuevo botón "Cerrar Sesión" */
-.menu-button-last-egress {
+.menu-button-last-modify {
   background-color: #C0D6B1;
   color: #668461;
   border: none;
@@ -105,13 +105,13 @@ body {
 }
 
 /* Cambio de color de fondo al presionar para el nuevo botón */
-.menu-button-last-egress:active {
+.menu-button-last-modify:active {
   background-color: #668461;
   color: #E8E3C4;
 }
 
 /* Estilo para el contenedor del carrusel en el panel derecho */
-.carousel-container-egress {
+.carousel-container-modify {
   display: flex;
   justify-content: center; /* Agrega esta línea para centrar horizontalmente */
   align-items: center;
@@ -120,18 +120,18 @@ body {
 }
 
 /* Estilos para el carrusel en sí */
-.carousel-egress {
+.carousel-modify {
   max-width: 100%; /* Ajusta el ancho del carrusel según tus necesidades */
 }
 
 /* Estilo para las imágenes dentro del carrusel */
-.carousel-img-egress {
+.carousel-img-modify {
   max-width: 2000px; /* Ajusta el tamaño de las imágenes dentro del carrusel */
   max-height: 700px;
 }
 
 /* Estilos para los botones de redes sociales */
-.social-button-egress {
+.social-button-modify {
   background: none;
   border: none;
   cursor: pointer;
@@ -140,26 +140,26 @@ body {
 }
 
 /* Estilos para las imágenes dentro de los botones */
-.social-button-img-egress {
+.social-button-img-modify {
   margin-top: 20px;
   width: 30px; /* Ajusta el ancho de los iconos según tus preferencias */
   height: 30px; /* Ajusta la altura de los iconos según tus preferencias */
 }
 
 /* Cambios de color al pasar el mouse sobre los botones */
-.social-button-egress:hover {
+.social-button-modify:hover {
   background-color: #668461;
   border-radius: 40%;
   transition: background-color 0.3s; 
 }
 
-.social-icons-egress {
+.social-icons-modify {
   display: flex;
   justify-content: right;
   align-items: right;
 }
 
-.welcome-egress {
+.welcome-modify {
 
   margin-right: 250px;
   font-family: "Quicksand", sans-serif;
@@ -256,7 +256,7 @@ body {
 }
 
 /* Estilo para el botón "Ingresar" */
-.egress-button {
+.modify-button {
   background-color: #668461;
   color: #E8E3C4;
   border: none;
@@ -271,7 +271,7 @@ body {
 }
 
 /* Cambio de color de fondo al pasar el mouse sobre el botón "Ingresar" */
-.egress-button:hover {
+.modify-button:hover {
   background-color: #C0D6B1;
 }
 
@@ -282,12 +282,12 @@ body {
 
 
 /* Cambio de color de fondo al presionar el botón "Ingresar" */
-.egress-button:active {
+.modify-button:active {
   background-color: #668461;
   color: #E8E3C4;
 }
 
-.form-group-egress{
+.form-group-modify{
   max-width: 740px;
   max-height: 100px;
   margin-left: 10px;

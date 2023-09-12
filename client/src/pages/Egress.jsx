@@ -4,6 +4,7 @@ import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
+import { Link } from 'react-router-dom';
 
 function Egress() {
   // Datos del producto
@@ -37,9 +38,14 @@ function Egress() {
             <img src={logo} alt="Logo" className="logo-egress" />
           </div>
           <div className="menu-egress">
-            <button className="menu-button-egress">Inicio</button>
-            <button className="menu-button-egress">Agregar producto</button>
-            <button className="menu-button-egress">Historial</button>
+          <Link to="/homeAdmin">
+                <button className="menu-button-egress" type="button">
+                Inicio
+              </button>
+              </Link>
+              <Link to="/inventory">
+            <button className="menu-button-egress">Gestionar Inventario</button>
+            </Link>
             <button className="menu-button-last-egress">Cerrar Sesión</button>
           </div>
         </div>
