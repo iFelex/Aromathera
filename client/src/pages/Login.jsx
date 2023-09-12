@@ -6,6 +6,7 @@ import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import axios from 'axios';
 import { Link, Navigate } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Importar SweetAlert2
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -32,11 +33,25 @@ function Login() {
 
       // Si el usuario se ha autenticado correctamente, navega a /home
       if (response.status === 200 && response.data.acceso) {
+        // Mostrar una notificación de SweetAlert2
+        Swal.fire({
+          icon: 'success',
+          title: 'Inicio de Sesión Exitoso',
+          text: 'Tus credenciales son correctas.',
+          confirmButtonColor: '#668461',
+        });
+
         setRedirectToHome(true);
-      } else {
-        setError('Credenciales incorrectas');
       }
     } catch (error) {
+      setError('Credenciales incorrectas');
+      Swal.fire({
+        icon: 'error',
+        title: 'Inicio de Sesión Fallido',
+        text: 'Tus credenciales son incorrectas.',
+        confirmButtonColor: '#668461', 
+      });
+      console.log('Credenciales incorrectas');
       console.error('Error al enviar la solicitud:', error);
     }
   };
@@ -67,8 +82,8 @@ function Login() {
               />
               <Link to="/inventory">
                 <button className="forgot-password-button" type="button">
-                Olvidaste tu contraseña?
-              </button>
+                  Olvidaste tu contraseña?
+                </button>
               </Link>
               <button className="login-button" type="submit">
                 Iniciar Sesión

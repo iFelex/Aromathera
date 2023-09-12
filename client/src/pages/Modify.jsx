@@ -74,15 +74,9 @@ function Modify() {
                 <input type="text" defaultValue={product.precioVenta} />
               </div>
               <div className="form-group-modify">
-                <label>Unidades a egresar:</label>
-                <input
-                  type="text"
-                  value={userComment}
-                  onChange={handleUserCommentChange}
-                />
               </div>
               <button className="modify-button" onClick={handleCommentSubmit}>
-                Egresar
+                Actualizar
               </button>
             </form>
           </div>

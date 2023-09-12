@@ -8,7 +8,7 @@ import routes from './routes/routes.js'
 import userModel from './models/UserModel.js'
 //import soapRoutes from '.routes/routes.js'
 const app = express();
-const PORT = 3001; 
+const PORT = 3001;
 
 // Middleware para analizar datos JSON en las solicitudes
 app.use(express.json());
@@ -23,7 +23,7 @@ app.use('/', routes)
 
 
 app.use(session({
-  secret:'secret',
+  secret: 'secret',
   resave: true,
   saveUninitialized: true
 }));
@@ -43,21 +43,22 @@ app.post('/api/login', async (req, res) => {
   console.log(username, password);
 
   //let passwordHaash = await bcryptjs.hash(password, 8);
-   try {
-    const user = await userModel.findOne({ where: { username } });  
-    console.log(user)  
-    if(user.username == username && password == user.password){
+  try {
+    const user = await userModel.findOne({ where: { username } });
+    console.log(user)
+    if (user.username == username && password == user.password) {
       console.log("acceso concedido\n");
       // Agrega un 1 a la respuesta
       res.status(200).send({ acceso: true });
-    }else{
-      console.log("acceso denegado\n");
-      res.status(401).send({ acceso: false });
     }
+
+
   } catch (error) {
+    console.log("acceso denegado\n");
+    res.status(401).send({ acceso: false });
     console.log(error)
-  }  
-  
+  }
+
 });
 
 // Inicia el servidor

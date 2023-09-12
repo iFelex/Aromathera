@@ -9,11 +9,7 @@ import { Link } from 'react-router-dom';
 
 function Inventory() {
   // Define un estado para almacenar los datos de los productos
-  const [products, setProducts] = useState([
-    { id: 1, nombre: 'Producto 1', presentacion: 'Presentación 1', stock: 10, precioVenta: 20.0 },
-    { id: 2, nombre: 'Producto 2', presentacion: 'Presentación 2', stock: 15, precioVenta: 25.0 },
-    // Agrega más productos si es necesario
-  ]);
+  const [products, setProducts] = useState([]);
 
   // Define un estado para controlar si el menú desplegable está abierto
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -27,6 +23,14 @@ function Inventory() {
   const handleDropdownHover = (e) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    // Realiza una solicitud GET al servidor para obtener los productos
+    fetch('http://localhost:3001/allProducts') // Ajusta la URL a tu servidor
+      .then((response) => response.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.error('Error fetching products:', error));
+  }, []); // El segundo argumento [] asegura que esta solicitud se realice solo una vez al montar el componente.
 
   return (
     <div className="inventory-container">
@@ -63,10 +67,10 @@ function Inventory() {
                 {products.map((product) => (
                   <tr key={product.id}>
                     <td>{product.id}</td>
-                    <td>{product.nombre}</td>
-                    <td>{product.presentacion}</td>
+                    <td>{product.name}</td>
+                    <td>{product.presentation}</td>
                     <td>{product.stock}</td>
-                    <td>{product.precioVenta}</td>
+                    <td>{product.sale_price}</td>
                     <td>
                       <div className="dropdown">
                         <button
