@@ -25,7 +25,9 @@ function Home() {
             <button className="menu-button-home">Crea tu propio jabón</button>
             <button className="menu-button-home">Historial</button>
             <button className="menu-button-home">Nosotros</button>
-            <button className="menu-button-last-home">Cerrar Sesión</button>
+            <Link to="/login">
+              <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
+            </Link>
           </div>
         </div>
         <div className="content-home white-background-home">

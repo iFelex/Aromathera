@@ -6,31 +6,69 @@ import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function Inventory() {
-  // Define un estado para almacenar los datos de los productos
   const [products, setProducts] = useState([]);
-
-  // Define un estado para controlar si el menú desplegable está abierto
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Función para abrir o cerrar el menú desplegable
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Evitar que el menú desplegable se abra al pasar el mouse
   const handleDropdownHover = (e) => {
     e.preventDefault();
   };
 
+  const handleDeleteClick = (productId) => {
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: 'Esta acción no se puede deshacer',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Realizar la solicitud DELETE al servidor
+        fetch(`http://localhost:3001/deleteProduct/${productId}`, {
+          method: 'DELETE',
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Manejar la respuesta del servidor
+            console.log('Respuesta del servidor:', data);
+
+            // Mostrar una alerta de éxito
+            showSuccessAlert();
+
+            // Actualizar la lista de productos después de eliminar
+            setProducts(products.filter((product) => product.id !== productId));
+          })
+          .catch((error) => {
+            console.error('Error al eliminar el producto:', error);
+          });
+      }
+    });
+  };
+
+  const showSuccessAlert = () => {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'El producto ha sido eliminado con éxito',
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
   useEffect(() => {
-    // Realiza una solicitud GET al servidor para obtener los productos
-    fetch('http://localhost:3001/allProducts') // Ajusta la URL a tu servidor
+    fetch('http://localhost:3001/allProducts')
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error('Error fetching products:', error));
-  }, []); // El segundo argumento [] asegura que esta solicitud se realice solo una vez al montar el componente.
+  }, []);
 
   return (
     <div className="inventory-container">
@@ -43,13 +81,16 @@ function Inventory() {
             <Link to="/homeAdmin">
               <button className="menu-button-inventory">Inicio</button>
             </Link>
-            <button className="menu-button-inventory">Agregar producto</button>
+            <Link to="/add">
+              <button className="menu-button-inventory">Agregar producto</button>
+            </Link>
             <button className="menu-button-inventory">Historial</button>
-            <button className="menu-button-last-inventory">Cerrar Sesión</button>
+            <Link to="/login">
+              <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
+            </Link>
           </div>
         </div>
         <div className="content-inventory white-background-inventory">
-          {/* Tabla de productos */}
           <div className="product-table-container">
             <h1>Lista de Productos</h1>
             <table className="product-table">
@@ -76,15 +117,27 @@ function Inventory() {
                         <button
                           className="dropbtn"
                           onClick={toggleDropdown}
-                          onMouseOver={handleDropdownHover} // Evitar que se abra al pasar el mouse
+                          onMouseOver={handleDropdownHover}
                         >
                           Gestionar
                         </button>
                         {isDropdownOpen && (
                           <div className="dropdown-content">
-                            <a href="/income">Ingreso</a>
-                            <a href="/egress">Egreso</a>
-                            <a href="/modify">Modificar</a>
+                            <Link to="/income" state={{ product }}>
+                              Ingreso
+                            </Link>
+                            <Link to="/egress" state={{ product }}>
+                              Egreso
+                            </Link>
+                            <Link to="/modify" state={{ product }}>
+                              Modificar
+                            </Link>
+                            <button
+                              className="delete-button"
+                              onClick={() => handleDeleteClick(product.id)}
+                            >
+                              Eliminar
+                            </button>
                           </div>
                         )}
                       </div>
@@ -94,17 +147,28 @@ function Inventory() {
               </tbody>
             </table>
           </div>
-          {/* Botones de redes sociales */}
           <div className="social-icons-inventory">
-            <h1 className='welcome-inventory'>Welcome @Admin</h1>
+            <h1 className="welcome-inventory">Welcome @Admin</h1>
             <button className="social-button-inventory">
-              <img src={facebook} alt="Facebook" className="social-button-img-inventory" />
+              <img
+                src={facebook}
+                alt="Facebook"
+                className="social-button-img-inventory"
+              />
             </button>
             <button className="social-button-inventory">
-              <img src={twitter} alt="Twitter" className="social-button-img-inventory" />
+              <img
+                src={twitter}
+                alt="Twitter"
+                className="social-button-img-inventory"
+              />
             </button>
             <button className="social-button-inventory">
-              <img src={instagram} alt="Instagram" className="social-button-img-inventory" />
+              <img
+                src={instagram}
+                alt="Instagram"
+                className="social-button-img-inventory"
+              />
             </button>
           </div>
         </div>

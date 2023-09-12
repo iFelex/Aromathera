@@ -7,6 +7,7 @@ import Income from '../pages/Income';
 import Egress from '../pages/Egress';
 import Modify from '../pages/Modify';
 import HomeAdmin from '../pages/HomeAdmin';
+import Add from '../pages/Add';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/income" element={<Income />}></Route>
         <Route path="/egress" element={<Egress />}></Route>
         <Route path="/modify" element={<Modify />}></Route>
+        <Route path="/add" element={<Add />}></Route>
       </Routes>
     </Router>
   );

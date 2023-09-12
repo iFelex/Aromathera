@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
-import '../styles/Modify.css';
+import '../styles/Add.css';
 import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+
 import Swal from 'sweetalert2';
 
-function Modify() {
-  // Datos del producto
-  const location = useLocation();
-  const { product } = location.state || {};
-
+function Add() {
   // Estado para los campos del formulario
   const [formData, setFormData] = useState({
-    name: product.name || '',
-    presentation: product.presentation || '',
-    stock: product.stock || '',
-    sale_price: product.sale_price || '',
+    name: '',
+    presentation: '',
+    stock: '',
+    sale_price: '',
   });
 
   // Manejar cambios en los campos del formulario
@@ -32,9 +28,9 @@ function Modify() {
 
   // Manejar el envío del formulario
   const handleSubmit = () => {
-    // Realizar la solicitud al backend para actualizar el producto
-    fetch('http://localhost:3001/updateProduct/' + product.id, {
-      method: 'PUT',
+    // Realizar la solicitud al backend para crear el producto
+    fetch('http://localhost:3001/createProduct/', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -47,9 +43,17 @@ function Modify() {
 
         // Mostrar una alerta de éxito
         showSuccessAlert();
+
+        // Limpiar el formulario después de crear el producto
+        setFormData({
+          name: '',
+          presentation: '',
+          stock: '',
+          sale_price: '',
+        });
       })
       .catch((error) => {
-        console.error('Error al actualizar el producto:', error);
+        console.error('Error al crear el producto:', error);
       });
   };
 
@@ -57,42 +61,37 @@ function Modify() {
     Swal.fire({
       position: 'top-end',
       icon: 'success',
-      title: 'Se ha actualizado el producto',
+      title: 'Se ha creado el producto',
       showConfirmButton: false,
       timer: 1500,
     });
   };
 
   return (
-    <div className="modify-container">
-      <div className="full-width-container-modify">
-        <div className="sidebar-modify green-background-modify">
-          <div className="logo-container-modify">
-            <img src={logo} alt="Logo" className="logo-modify" />
+    <div className="add-container">
+      <div className="full-width-container-add">
+        <div className="sidebar-add green-background-add">
+          <div className="logo-container-add">
+            <img src={logo} alt="Logo" className="logo-add" />
           </div>
-          <div className="menu-modify">
+          <div className="menu-add">
             <Link to="/homeAdmin">
-              <button className="menu-button-modify" type="button">
+              <button className="menu-button-add" type="button">
                 Inicio
               </button>
             </Link>
-            <Link to="/inventory">
-              <button className="menu-button-modify">Gestionar inventario</button>
-            </Link>
+            <button className="menu-button-add">Agregar producto</button>
+            <button className="menu-button-add">Gestionar inventario</button>
             <Link to="/login">
               <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
             </Link>
           </div>
         </div>
-        <div className="content-modify white-background-modify">
+        <div className="content-add white-background-add">
           <div className="product-form-container">
             <h1>Detalles del Producto</h1>
             <form className="product-form">
-              <div className="form-group-modify">
-                <label>ID:</label>
-                <input type="text" defaultValue={product.id} readOnly />
-              </div>
-              <div className="form-group-modify">
+              <div className="form-group-add">
                 <label>Nombre:</label>
                 <input
                   type="text"
@@ -101,7 +100,7 @@ function Modify() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="form-group-modify">
+              <div className="form-group-add">
                 <label>Presentación:</label>
                 <input
                   type="text"
@@ -110,7 +109,7 @@ function Modify() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="form-group-modify">
+              <div className="form-group-add">
                 <label>Stock:</label>
                 <input
                   type="number"
@@ -119,7 +118,7 @@ function Modify() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="form-group-modify">
+              <div className="form-group-add">
                 <label>Precio de Venta:</label>
                 <input
                   type="number"
@@ -129,23 +128,36 @@ function Modify() {
                 />
               </div>
               <Link to="/inventory">
-                <button className="modify-button" type="button" onClick={handleSubmit}>
-                  Actualizar
+                <button className="add-button" type="button" onClick={handleSubmit}>
+                  Aceptar
                 </button>
               </Link>
+
             </form>
           </div>
           {/* Botones de redes sociales */}
-          <div className="social-icons-modify">
-            <h1 className='welcome-modify'>Welcome @Admin</h1>
-            <button className="social-button-modify">
-              <img src={facebook} alt="Facebook" className="social-button-img-modify" />
+          <div className="social-icons-add">
+            <h1 className="welcome-add">Welcome @Admin</h1>
+            <button className="social-button-add">
+              <img
+                src={facebook}
+                alt="Facebook"
+                className="social-button-img-add"
+              />
             </button>
-            <button className="social-button-modify">
-              <img src={twitter} alt="Twitter" className="social-button-img-modify" />
+            <button className="social-button-add">
+              <img
+                src={twitter}
+                alt="Twitter"
+                className="social-button-img-add"
+              />
             </button>
-            <button className="social-button-modify">
-              <img src={instagram} alt="Instagram" className="social-button-img-modify" />
+            <button className="social-button-add">
+              <img
+                src={instagram}
+                alt="Instagram"
+                className="social-button-img-add"
+              />
             </button>
           </div>
         </div>
@@ -154,4 +166,4 @@ function Modify() {
   );
 }
 
-export default Modify;
+export default Add;

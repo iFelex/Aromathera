@@ -23,10 +23,13 @@ function HomeAdmin() {
           <div className="menu-homeAdmin">
             <button className="menu-button-homeAdmin">Inicio</button>
             <Link to="/inventory">
-            <button className="menu-button-homeAdmin">Gestionar inventario</button>
+              <button className="menu-button-homeAdmin">Gestionar inventario</button>
             </Link>
             <button className="menu-button-homeAdmin">Historial</button>
-            <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
+            <Link to="/login">
+              <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
+            </Link>
+
           </div>
         </div>
         <div className="content-homeAdmin white-background-homeAdmin">
@@ -52,7 +55,7 @@ function HomeAdmin() {
           </div>
           {/* Botones de redes sociales */}
           <div className="social-icons-homeAdmin">
-            <h1 className='welcome-homeAdmin'>Bienvenido! @Username</h1>
+            <h1 className='welcome-homeAdmin'>Bienvenido! @Admin</h1>
             <button className="social-button-homeAdmin">
               <img src={facebook} alt="Facebook" className="social-button-img-homeAdmin" />
             </button>

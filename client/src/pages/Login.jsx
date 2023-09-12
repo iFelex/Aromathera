@@ -57,7 +57,7 @@ function Login() {
   };
 
   if (redirectToHome) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/homeAdmin" />;
   }
 
   return (
@@ -80,15 +80,11 @@ function Login() {
                 value={password}
                 onChange={handlePasswordChange}
               />
-              <Link to="/inventory">
-                <button className="forgot-password-button" type="button">
-                  Olvidaste tu contraseña?
-                </button>
-              </Link>
+
               <button className="login-button" type="submit">
                 Iniciar Sesión
               </button>
-              <button className="register-button">Registrarse</button>
+
             </div>
           </form>
         </div>

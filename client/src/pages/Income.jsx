@@ -1,33 +1,86 @@
 import React, { useState } from 'react';
-import '../styles/Income.css';
+import '../styles/income.css';
 import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function Income() {
   // Datos del producto
-  const product = {
-    id: 1,
-    nombre: 'Producto 1',
-    presentacion: 'Presentación 1',
-    stock: 10,
-    precioVenta: 20.0,
+  const location = useLocation();
+  const { product } = location.state || {};
+
+  // Estado para los campos del formulario
+  const [formData, setFormData] = useState({
+    name: product.name || '',
+    presentation: product.presentation || '',
+    stock: product.stock || 0, // Inicializamos el stock en 0
+    sale_price: product.sale_price || '',
+  });
+
+  // Estado para las unidades a ingresar
+  const [unitsToAdd, setUnitsToAdd] = useState('');
+
+  // Manejar cambios en los campos del formulario
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  // Estado para el campo de texto editable
-  const [userComment, setUserComment] = useState('');
-
-  // Manejar cambios en el campo de texto
-  const handleUserCommentChange = (e) => {
-    setUserComment(e.target.value);
+  // Manejar cambios en las unidades a ingresar
+  const handleUnitsChange = (e) => {
+    setUnitsToAdd(e.target.value);
   };
 
-  // Manejar el envío del comentario
-  const handleCommentSubmit = () => {
-    // Aquí puedes realizar alguna acción con el comentario del usuario, como enviarlo a un servidor, etc.
-    console.log('Comentario del usuario:', userComment);
+  // Manejar el envío del formulario
+  const handleSubmit = () => {
+    // Sumar las unidades ingresadas al stock actual
+    const updatedStock = formData.stock + parseInt(unitsToAdd);
+
+    // Actualizar el valor del stock en el formulario
+    setFormData({
+      ...formData,
+      stock: updatedStock,
+    });
+
+    // Realizar la solicitud al backend para actualizar el producto
+    fetch('http://localhost:3001/updateProduct/' + product.id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...formData,
+        stock: updatedStock, // Enviar el stock actualizado al servidor
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Manejar la respuesta del servidor
+        console.log('Respuesta del servidor:', data);
+
+        // Mostrar una alerta de éxito
+        showSuccessAlert();
+      })
+      .catch((error) => {
+        console.error('Error al actualizar el producto:', error);
+      });
+  };
+
+  const showSuccessAlert = () => {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Se ha actualizado el producto',
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (
@@ -46,7 +99,9 @@ function Income() {
             <Link to="/inventory">
               <button className="menu-button-income">Gestionar inventario</button>
             </Link>
-            <button className="menu-button-last-income">Cerrar Sesión</button>
+            <Link to="/login">
+              <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
+            </Link>
           </div>
         </div>
         <div className="content-income white-background-income">
@@ -55,35 +110,58 @@ function Income() {
             <form className="product-form">
               <div className="form-group-income">
                 <label>ID:</label>
-                <input type="text" value={product.id} readOnly />
+                <input type="text" defaultValue={product.id} readOnly />
               </div>
               <div className="form-group-income">
                 <label>Nombre:</label>
-                <input type="text" value={product.nombre} readOnly />
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
               </div>
               <div className="form-group-income">
                 <label>Presentación:</label>
-                <input type="text" value={product.presentacion} readOnly />
+                <input
+                  type="text"
+                  name="presentation"
+                  value={formData.presentation}
+                  onChange={handleInputChange}
+                />
               </div>
               <div className="form-group-income">
                 <label>Stock:</label>
-                <input type="text" value={product.stock} readOnly />
+                <input
+                  type="number"
+                  name="stock"
+                  value={formData.stock}
+                  readOnly // Hacer el campo de stock de solo lectura
+                />
               </div>
               <div className="form-group-income">
                 <label>Precio de Venta:</label>
-                <input type="text" value={product.precioVenta} readOnly />
+                <input
+                  type="number"
+                  name="sale_price"
+                  value={formData.sale_price}
+                  onChange={handleInputChange}
+                />
               </div>
               <div className="form-group-income">
                 <label>Unidades a ingresar:</label>
                 <input
-                  type="text"
-                  value={userComment}
-                  onChange={handleUserCommentChange}
+                  type="number"
+                  name="units"
+                  value={unitsToAdd}
+                  onChange={handleUnitsChange}
                 />
               </div>
-              <button className="income-button" onClick={handleCommentSubmit}>
-                Ingresar
-              </button>
+              <Link to="/inventory">
+                <button className="income-button" type="button" onClick={handleSubmit}>
+                  Ingresar
+                </button>
+              </Link>
             </form>
           </div>
           {/* Botones de redes sociales */}
