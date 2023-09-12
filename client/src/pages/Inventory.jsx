@@ -75,8 +75,8 @@ function Inventory() {
                         </button>
                         {isDropdownOpen && (
                           <div className="dropdown-content">
-                            <a href="https://youtu.be/dQw4w9WgXcQ?si=qJF2dwXBbWT1JfzC">Ingreso</a>
-                            <a href="https://www.youtube.com/watch?v=6XHgBXYpaJs">Egreso</a>
+                            <a href="/income">Ingreso</a>
+                            <a href="/egress">Egreso</a>
                             <a href="https://www.youtube.com/watch?v=2DITDrh0FL4">Modificar</a>
                           </div>
                         )}
