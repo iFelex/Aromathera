@@ -38,14 +38,23 @@ export const createProduct = async (req, res) => {
 //Actualizar registro
 export const updateProduct = async (req, res) => {
     try {
-        ProductModel.update(req.body, {
-            where: {id: req.params.id}
-        })
+        await ProductModel.update(req.body, {where: {id: req.params.id}})
         res.json({"message":"Registro actualizado"})
     } catch (error) {
         res.json({message: error.message})
     }
 }
+
+// Actualizar solo el campo 'stock' de un producto
+export const updateProductStock = async (req, res) => {
+    try {
+        const { stock } = req.body;
+        await ProductModel.update({ stock },{where: { id: req.params.id }});        
+        res.json({ message: "Stock actualizado" });
+    } catch (error) {
+        res.status(501).json({ message: error.message });
+    }
+};
 
 //Eliminar registro
 export const deleteProduct = async (req, res) => {

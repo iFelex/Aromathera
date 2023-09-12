@@ -1,6 +1,6 @@
 import express, { Router } from 'express'
 import { createSoap, deleteSoap, getAllSoaps, getSoap, updateSoap } from '../controllers/SoapController.js'
-import { createProduct, deleteProduct, getAllProducts, getProduct, updateProduct } from '../controllers/ProductController.js'
+import { createProduct, deleteProduct, getAllProducts, getProduct, updateProduct , updateProductStock} from '../controllers/ProductController.js'
 import { createUser, deleteUser, getAllUsers, getUser, updateUser } from '../controllers/UserController.js'
 const router = express.Router()
 
@@ -15,6 +15,7 @@ router.get('/getProduct/:id', getProduct)
 router.post('/createProduct/', createProduct)
 router.put('/updateProduct/:id', updateProduct)
 router.delete('/deleteProduct/:id', deleteProduct)
+router.put('/updateProductStock/:id', updateProductStock);
 
 router.get('/allUsers/', getAllUsers)
 router.get('/getProduct/:id', getUser)
