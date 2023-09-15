@@ -75,7 +75,7 @@ function EgressHistory() {
               <button className="menu-button-egresshistory">Agregar producto</button>
             </Link>
             <Link to="/egressHistory">
-              <button className="menu-button-egresshistory">Historial de egresos</button>
+              <button className="menu-button-egresshistory">Historial de gastos</button>
             </Link>
 
             <Link to="/login">
@@ -85,15 +85,15 @@ function EgressHistory() {
         </div>
         <div className="content-egresshistory white-background-egresshistory">
           <div className="product-table-container">
-            <h1>Historial de Egresos</h1>
+            <h1>Historial de gastos</h1>
             <table className="product-table">
               <thead>
                 <tr>
                   <th>ID de Egreso</th>
                   <th>Cliente</th>
                   <th>Producto</th>
-                  <th>Unidades Egresadas</th>
-                  <th>Fecha de Egreso</th>
+                  <th>Unidades Solicitadas</th>
+                  <th>Fecha de Uso</th>
                 </tr>
               </thead>
               <tbody>

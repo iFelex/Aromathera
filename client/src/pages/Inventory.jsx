@@ -85,7 +85,7 @@ function Inventory() {
               <button className="menu-button-inventory">Agregar producto</button>
             </Link>
             <Link to="/egressHistory">
-              <button className="menu-button-inventory">Historial de egresos</button>
+              <button className="menu-button-inventory">Historial de gastos</button>
             </Link>
 
             <Link to="/login">

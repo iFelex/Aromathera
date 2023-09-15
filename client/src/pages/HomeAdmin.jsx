@@ -26,7 +26,7 @@ function HomeAdmin() {
               <button className="menu-button-homeAdmin">Gestionar inventario</button>
             </Link>
             <Link to="/egressHistory">
-              <button className="menu-button-homeAdmin">Historial de egresos</button>
+              <button className="menu-button-homeAdmin">Historial de gastos</button>
             </Link>
 
             <Link to="/login">
