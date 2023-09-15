@@ -5,7 +5,6 @@ import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import { Link } from 'react-router-dom';
-
 import Swal from 'sweetalert2';
 
 function Add() {
@@ -20,6 +19,22 @@ function Add() {
   // Manejar cambios en los campos del formulario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    // Validar que solo se ingresen letras en el campo de nombre
+    if (name === 'name' && !/^[A-Za-z\s]+$/.test(value)) {
+      return;
+    }
+
+    // Validar que solo se ingresen números en los campos de stock y precio
+    if ((name === 'stock' || name === 'sale_price') && !/^\d+(\.\d{0,2})?$/.test(value)) {
+      return;
+    }
+
+    // Validar que no haya punto decimal en el campo de stock
+    if (name === 'stock' && value.includes('.')) {
+      return;
+    }
+
     setFormData({
       ...formData,
       [name]: value,
@@ -28,6 +43,25 @@ function Add() {
 
   // Manejar el envío del formulario
   const handleSubmit = () => {
+    // Validar que los campos de stock y precio de venta sean números positivos
+    if (isNaN(formData.stock) || parseFloat(formData.stock) < 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, ingrese un stock válido.',
+      });
+      return;
+    }
+
+    if (isNaN(formData.sale_price) || parseFloat(formData.sale_price) < 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, ingrese un precio de venta válido.',
+      });
+      return;
+    }
+
     // Realizar la solicitud al backend para crear el producto
     fetch('http://localhost:3001/createProduct/', {
       method: 'POST',
@@ -81,7 +115,11 @@ function Add() {
               </button>
             </Link>
             <button className="menu-button-add">Agregar producto</button>
-            <button className="menu-button-add">Gestionar inventario</button>
+            <Link to="/inventory">
+              <button className="menu-button-add">Gestionar inventario</button>
+
+            </Link>
+
             <Link to="/login">
               <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
             </Link>
@@ -112,7 +150,7 @@ function Add() {
               <div className="form-group-add">
                 <label>Stock:</label>
                 <input
-                  type="number"
+                  type="text"
                   name="stock"
                   value={formData.stock}
                   onChange={handleInputChange}
@@ -121,7 +159,7 @@ function Add() {
               <div className="form-group-add">
                 <label>Precio de Venta:</label>
                 <input
-                  type="number"
+                  type="text"
                   name="sale_price"
                   value={formData.sale_price}
                   onChange={handleInputChange}

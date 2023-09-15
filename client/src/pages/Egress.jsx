@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Egress.css';
 import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
@@ -15,16 +15,36 @@ function Egress() {
 
   // Estado para el campo de texto editable
   const [userComment, setUserComment] = useState('');
+  const [selectedClient, setSelectedClient] = useState('');
+  const [clients, setClients] = useState([]);
+
+  // Obtener la lista de clientes desde la ruta especificada
+  useEffect(() => {
+    fetch('http://localhost:3001/allClient')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Datos de clientes:', data); // Agrega esta línea
+        setClients(data);
+      })
+      .catch((error) => {
+        console.error('Error al obtener la lista de clientes:', error);
+      });
+  }, []);
 
   // Manejar cambios en el campo de texto
   const handleUserCommentChange = (e) => {
-    setUserComment(e.target.value);
+    const value = e.target.value;
+
+    // Validar que solo se ingresen números positivos
+    if (/^[0-9]+$/.test(value)) {
+      setUserComment(value);
+    }
   };
 
-  // Manejar el envío del comentario
-  const handleCommentSubmit = () => {
-    // Aquí puedes realizar alguna acción con el comentario del usuario, como enviarlo a un servidor, etc.
-    console.log('Comentario del usuario:', userComment);
+  // Manejar cambios en el campo de cliente
+  const handleClientChange = (e) => {
+    const value = e.target.value;
+    setSelectedClient(value);
   };
 
   // Función para mostrar una alerta de éxito
@@ -52,17 +72,50 @@ function Egress() {
       return;
     }
 
-    // Restar las unidades ingresadas al stock actual
-    const updatedStock = product.stock - unitsToEgress;
-
-    if (updatedStock < 0) {
+    // Verificar que las unidades a egresar no sean mayores que el stock actual
+    if (unitsToEgress > product.stock) {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'No hay suficientes unidades en stock para egresar.',
+        text: 'No puede egresar más unidades de las disponibles en stock.',
       });
+      // No continuar con la acción si hay un error
       return;
     }
+
+    // Obtener el ID del cliente seleccionado
+    const selectedClientId = clients.find((client) => client.username === selectedClient)?.id;
+
+    // Crear un objeto con los datos del egreso
+    const egressData = {
+      product_id: product.id,
+      client_id: selectedClientId,
+      units_egressed: unitsToEgress,
+      date: new Date().toISOString().split('T')[0], // Obtén la fecha actual en formato YYYY-MM-DD
+    };
+
+    // Realizar la solicitud al backend para guardar la información en la base de datos
+    fetch('http://localhost:3001/saveEgress', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(egressData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Manejar la respuesta del servidor
+        console.log('Respuesta del servidor:', data);
+
+        // Mostrar una alerta de éxito
+        showSuccessAlert();
+      })
+      .catch((error) => {
+        console.error('Error al guardar el egreso en la base de datos:', error);
+      });
+
+    // Restar las unidades ingresadas al stock actual
+    const updatedStock = product.stock - unitsToEgress;
 
     // Crear un nuevo objeto de producto sin los campos que deseas omitir
     const updatedProduct = {
@@ -97,6 +150,12 @@ function Egress() {
   const handleBothSubmit = () => {
     handleCommentSubmit();
     handleEgressSubmit();
+  };
+
+  // Manejar el envío del comentario
+  const handleCommentSubmit = () => {
+    // Aquí puedes realizar alguna acción con el comentario del usuario, como enviarlo a un servidor, etc.
+    console.log('Comentario del usuario:', userComment);
   };
 
   return (
@@ -152,12 +211,23 @@ function Egress() {
                   onChange={handleUserCommentChange}
                 />
               </div>
-
+              <div className="form-group">
+                <label>Cliente:</label>
+                <select value={selectedClient} onChange={handleClientChange}>
+                  <option value="">Seleccionar cliente</option>
+                  {clients.map((client) => (
+                    <option key={client.id} value={client.username}>
+                      {client.full_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <Link to="/inventory">
                 <button className="egress-button" onClick={handleBothSubmit}>
                   Egresar
                 </button>
               </Link>
+
             </form>
           </div>
           {/* Botones de redes sociales */}

@@ -17,13 +17,44 @@ function Modify() {
   const [formData, setFormData] = useState({
     name: product.name || '',
     presentation: product.presentation || '',
-    stock: product.stock || '',
-    sale_price: product.sale_price || '',
+    stock: product.stock.toString() || '',
+    sale_price: product.sale_price.toString() || '',
   });
 
   // Manejar cambios en los campos del formulario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    // Validar que solo se ingresen números y puntos en los campos de precio y stock
+    if ((name === "stock" || name === "sale_price") && !/^\d*\.?\d*$/.test(value)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, ingrese un valor numérico válido.',
+      });
+      return;
+    }
+
+    // Validar que el valor no sea negativo para el campo de "Precio de Venta"
+    if (name === "sale_price" && parseFloat(value) < 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'El precio de venta no puede ser negativo.',
+      });
+      return;
+    }
+
+    // Validar que no haya punto decimal en el campo de stock
+    if (name === 'stock' && value.includes('.')) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'El campo de stock no debe contener un punto decimal.',
+      });
+      return;
+    }
+
     setFormData({
       ...formData,
       [name]: value,
@@ -113,7 +144,7 @@ function Modify() {
               <div className="form-group-modify">
                 <label>Stock:</label>
                 <input
-                  type="number"
+                  type="text"
                   name="stock"
                   value={formData.stock}
                   onChange={handleInputChange}
@@ -122,7 +153,7 @@ function Modify() {
               <div className="form-group-modify">
                 <label>Precio de Venta:</label>
                 <input
-                  type="number"
+                  type="text"
                   name="sale_price"
                   value={formData.sale_price}
                   onChange={handleInputChange}

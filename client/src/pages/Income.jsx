@@ -35,13 +35,30 @@ function Income() {
 
   // Manejar cambios en las unidades a ingresar
   const handleUnitsChange = (e) => {
-    setUnitsToAdd(e.target.value);
+    const value = e.target.value;
+
+    // Validar que solo se ingresen números positivos
+    if (/^[0-9]+$/.test(value)) {
+      setUnitsToAdd(value);
+    }
   };
 
   // Manejar el envío del formulario
   const handleSubmit = () => {
+    // Validar que las unidades a ingresar sean un número positivo
+    const units = parseInt(unitsToAdd);
+
+    if (isNaN(units) || units <= 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, ingrese una cantidad válida de unidades a ingresar.',
+      });
+      return;
+    }
+
     // Sumar las unidades ingresadas al stock actual
-    const updatedStock = formData.stock + parseInt(unitsToAdd);
+    const updatedStock = formData.stock + units;
 
     // Actualizar el valor del stock en el formulario
     setFormData({
@@ -80,6 +97,7 @@ function Income() {
       title: 'Se ha actualizado el producto',
       showConfirmButton: false,
       timer: 1500,
+
     });
   };
 
@@ -151,7 +169,7 @@ function Income() {
               <div className="form-group-income">
                 <label>Unidades a ingresar:</label>
                 <input
-                  type="number"
+                  type="text"
                   name="units"
                   value={unitsToAdd}
                   onChange={handleUnitsChange}
@@ -162,6 +180,7 @@ function Income() {
                   Ingresar
                 </button>
               </Link>
+
             </form>
           </div>
           {/* Botones de redes sociales */}
