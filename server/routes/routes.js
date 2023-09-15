@@ -2,6 +2,7 @@ import express, { Router } from 'express'
 import { createSoap, deleteSoap, getAllSoaps, getSoap, updateSoap } from '../controllers/SoapController.js'
 import { createProduct, deleteProduct, getAllProducts, getProduct, updateProduct , updateProductStock} from '../controllers/ProductController.js'
 import { createUser, deleteUser, getAllUsers, getUser, updateUser } from '../controllers/UserController.js'
+import { createEgress, deleteEgress, getAllEgress, getEgress, updateEgress } from '../controllers/EgressController.js'
 import { createClient, deleteClient, getAllClients, getClient, updateClient } from '../controllers/ClientController.js'
 const router = express.Router()
 
@@ -29,5 +30,11 @@ router.get('/getClient/:id', getClient)
 router.post('/createClient/', createClient)
 router.put('/updateClient/:id', updateClient)
 router.delete('/deleteClient/:id', deleteClient)
+
+router.get('/allEgress/', getAllEgress)
+router.get('/getEgress/:id', getEgress)
+router.post('/createEgress/', createEgress)
+router.put('/updateEgress/:id', updateEgress)
+router.delete('/deleteEgress/:id', deleteEgress)
 
 export default router
