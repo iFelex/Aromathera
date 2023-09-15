@@ -84,7 +84,10 @@ function Inventory() {
             <Link to="/add">
               <button className="menu-button-inventory">Agregar producto</button>
             </Link>
-            <button className="menu-button-inventory">Historial</button>
+            <Link to="/egressHistory">
+              <button className="menu-button-inventory">Historial de egresos</button>
+            </Link>
+
             <Link to="/login">
               <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
             </Link>

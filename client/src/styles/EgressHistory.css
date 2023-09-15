@@ -1,0 +1,285 @@
+/* EgressHistory.css */
+
+/* Estilos generales */
+body {
+  margin: 0;
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Contenedor principal */
+.egresshistory-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Contenedor de ancho completo */
+.full-width-container-egresshistory {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Barra lateral izquierda */
+.sidebar-egresshistory {
+  width: 250px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: #333;
+  border-right: 2px solid #ccc;
+  background-color: #C0D6B1;
+}
+
+/* Fondo blanco */
+.white-background-egresshistory {
+  background-color: #E8E3C4;
+  flex: 1;
+}
+
+/* Logo centrado en la parte superior con margen superior ajustado */
+.logo-container-egresshistory {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: -60px;
+}
+
+/* Logo */
+.logo-egresshistory {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Estilo de los botones del menú con el color verde intercambiado */
+.menu-egresshistory {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px; /* Espaciado entre el logo y los botones */
+}
+
+.menu-button-egresshistory {
+  background-color: #C0D6B1; /* Fondo igual al del panel izquierdo */
+  color: #668461;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 10px; /* Espaciado mayor entre los botones */
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold; /* Texto en negrita */
+  font-size: 18px; /* Tamaño de letra más grande */
+  transition: background-color 0.3s; /* Agrega una transición suave */
+}
+
+/* Cambio de color de fondo al presionar y manteniendo el verde oscuro */
+.menu-button-egresshistory:active {
+  background-color: #E8E3C4; /* Cambio de fondo al presionar */
+  color: #668461; /* Mantener el color de texto al presionar */
+}
+
+/* Estilo del nuevo botón "Cerrar Sesión" */
+.menu-button-last-egresshistory {
+  background-color: #C0D6B1;
+  color: #668461;
+  border: none;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: auto; /* Coloca el botón en la parte inferior */
+  align-self: center; /* Centra horizontalmente en el panel */
+  position: absolute;
+  bottom: 10px; /* Ajusta la distancia desde la parte inferior del panel */
+  transition: background-color 0.3s; /* Agrega una transición suave */
+}
+
+/* Cambio de color de fondo al presionar para el nuevo botón */
+.menu-button-last-egresshistory:active {
+  background-color: #668461;
+  color: #E8E3C4;
+}
+
+/* Estilo para el contenedor del carrusel en el panel derecho */
+.carousel-container-egresshistory {
+  display: flex;
+  justify-content: center; /* Agrega esta línea para centrar horizontalmente */
+  align-items: center;
+  height: 78%;
+  background-color: #E8E3C4;
+}
+
+/* Estilos para el carrusel en sí */
+.carousel-egresshistory {
+  max-width: 100%; /* Ajusta el ancho del carrusel según tus necesidades */
+}
+
+/* Estilo para las imágenes dentro del carrusel */
+.carousel-img-egresshistory {
+  max-width: 2000px; /* Ajusta el tamaño de las imágenes dentro del carrusel */
+  max-height: 700px;
+}
+
+/* Estilos para los botones de redes sociales */
+.social-button-egresshistory {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para las imágenes dentro de los botones */
+.social-button-img-egresshistory {
+  width: 30px; /* Ajusta el ancho de los iconos según tus preferencias */
+  height: 30px; /* Ajusta la altura de los iconos según tus preferencias */
+}
+
+/* Cambios de color al pasar el mouse sobre los botones */
+.social-button-egresshistory:hover {
+  background-color: #668461;
+  border-radius: 40%;
+  transition: background-color 0.3s; 
+}
+
+.social-icons-egresshistory {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.welcome-egresshistory {
+  margin-top: 20px;
+  margin-right: 230px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: lighter;
+  font-style: oblique;
+}
+
+/* Estilos para el contenedor de la tabla con scroll */
+.product-table-container {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+  overflow-x: hidden;
+  max-height: 640px; /* Establece la altura máxima de la tabla */
+  max-width: 1200px;
+}
+
+/* Estilos para la tabla */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  table-layout: fixed; /* Fuerza que las columnas tengan un ancho fijo */
+  margin-left: 40px;
+}
+
+/* Resto de tus estilos de tabla... */
+
+/* Estilo del menú desplegable */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Resto de tus estilos de menú desplegable... */
+
+.product-table th,
+.product-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.product-table th {
+  background-color: #E8E3C4;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-table td {
+  background-color: #fff;
+  color: #333;
+  
+}
+
+.product-table tbody tr:nth-child(even) {
+  background-color: #F0F0F0;
+}
+
+.product-table tbody tr:hover {
+  background-color: #E0E0E0;
+}
+
+/* Estilo del botón del menú desplegable */
+.dropbtn {
+  background-color: #C0D6B1;
+  color: #668461;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Estilo del contenido del menú desplegable */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Estilo de los elementos del menú desplegable */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Cambio de color al pasar el mouse sobre los elementos del menú desplegable */
+.dropdown-content a:hover {
+  background-color: #668461;
+  color: #fff;
+}
+
+/* Muestra el menú desplegable cuando se pasa el mouse sobre el botón */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.delete-button {
+  background-color: #C0D6B1;
+  color: #668461;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: left; /* Alinea el texto a la izquierda */
+  width: 100%; /* Ajusta el ancho del botón al 100% del contenedor */
+}
+
+/* Cambio de color de fondo al pasar el mouse sobre el botón "Eliminar" */
+.delete-button:hover {
+  background-color: #C0D6B1;
+  color: #668461;
+}
