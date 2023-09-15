@@ -2,6 +2,7 @@ import express, { Router } from 'express'
 import { createSoap, deleteSoap, getAllSoaps, getSoap, updateSoap } from '../controllers/SoapController.js'
 import { createProduct, deleteProduct, getAllProducts, getProduct, updateProduct , updateProductStock} from '../controllers/ProductController.js'
 import { createUser, deleteUser, getAllUsers, getUser, updateUser } from '../controllers/UserController.js'
+import { createClient, deleteClient, getAllClients, getClient, updateClient } from '../controllers/ClientController.js'
 const router = express.Router()
 
 router.get('/allSoaps/', getAllSoaps)
@@ -18,9 +19,15 @@ router.delete('/deleteProduct/:id', deleteProduct)
 router.put('/updateProductStock/:id', updateProductStock);
 
 router.get('/allUsers/', getAllUsers)
-router.get('/getProduct/:id', getUser)
+router.get('/getUser/:id', getUser)
 router.post('/createUser/', createUser)
-router.put('/updateProduct/:id', updateUser)
+router.put('/updateUser/:id', updateUser)
 router.delete('/deleteUser/:id', deleteUser)
+
+router.get('/allClient/', getAllClients)
+router.get('/getClient/:id', getClient)
+router.post('/createClient/', createClient)
+router.put('/updateClient/:id', updateClient)
+router.delete('/deleteClient/:id', deleteClient)
 
 export default router
