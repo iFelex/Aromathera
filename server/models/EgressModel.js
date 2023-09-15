@@ -5,21 +5,20 @@ import {DataTypes} from "sequelize";
 
 const EgressModel = db.define('egress', {
     cliente_id: {
-      type: Sequelize.INTEGER, // si no sirve intentar con "DataTypes.INTEGER"
+      type: DataTypes.INTEGER, 
       references: {
         model: 'clients',
         key: 'id',
       },
     },
     producto_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       references: {
         model: 'products',
         key: 'id',
       },
     },
     egress_units: { type: DataTypes.INTEGER}, 
-    egress_date: { type: DataTypes.DATE},
 })
 
 export default EgressModel

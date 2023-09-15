@@ -88,14 +88,16 @@ function Egress() {
 
     // Crear un objeto con los datos del egreso
     const egressData = {
-      product_id: product.id,
-      client_id: selectedClientId,
-      units_egressed: unitsToEgress,
-      date: new Date().toISOString().split('T')[0], // Obtén la fecha actual en formato YYYY-MM-DD
+      id: null, // Debes asignar un valor adecuado al id si lo obtienes del servidor o dejarlo como null si se genera automáticamente en el servidor
+      cliente_id: selectedClientId,
+      producto_id: product.id,
+      egress_units: unitsToEgress,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
 
     // Realizar la solicitud al backend para guardar la información en la base de datos
-    fetch('http://localhost:3001/saveEgress', {
+    fetch('http://localhost:3001/createEgress', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
