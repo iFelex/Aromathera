@@ -28,6 +28,9 @@ function HomeAdmin() {
             <Link to="/egressHistory">
               <button className="menu-button-homeAdmin">Historial de gastos</button>
             </Link>
+            <Link to="/incomeHistory">
+              <button className="menu-button-homeAdmin">Historial de ingresos</button>
+            </Link>
 
             <Link to="/login">
               <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>

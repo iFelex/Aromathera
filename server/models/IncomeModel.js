@@ -18,6 +18,7 @@ const IncomeModel = db.define('incomes', {
           key: 'id',
         },
     },
+    
     income_units: { type: DataTypes.INTEGER}, 
 })
 
