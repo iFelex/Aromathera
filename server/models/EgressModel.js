@@ -3,7 +3,7 @@ import db from "../config/db.js";
 //importar sequalize
 import {DataTypes} from "sequelize";
 
-const EgressModel = db.define('egress', {
+const EgressModel = db.define('egresses', {
     cliente_id: {
       type: DataTypes.INTEGER, 
       references: {

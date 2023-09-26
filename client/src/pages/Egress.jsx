@@ -101,7 +101,7 @@ function Egress() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-      },
+      },      
       body: JSON.stringify(egressData),
     })
       .then((response) => response.json())
