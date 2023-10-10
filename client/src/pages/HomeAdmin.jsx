@@ -31,7 +31,9 @@ function HomeAdmin() {
             <Link to="/incomeHistory">
               <button className="menu-button-homeAdmin">Historial de ingresos</button>
             </Link>
-
+            <Link to="/catalog">
+              <button className="menu-button-homeAdmin">Catalogo</button>
+            </Link>
             <Link to="/login">
               <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
             </Link>
