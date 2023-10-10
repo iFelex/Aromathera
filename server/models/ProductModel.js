@@ -8,6 +8,7 @@ const ProductModel = db.define('products', {
     presentation: { type: DataTypes.STRING }, 
     stock: { type: DataTypes.STRING }, 
     sale_price: { type: DataTypes.DOUBLE },
+    image: {type: DataTypes.STRING},
 })
 
 export default ProductModel
