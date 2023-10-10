@@ -8,4 +8,4 @@ const RolesModel = db.define('roles', {
     description: { type: DataTypes.STRING }, 
 })
 
-export default RolModel
+export default RolesModel

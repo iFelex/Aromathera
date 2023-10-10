@@ -3,7 +3,7 @@ import db from "../config/db.js";
 //importar sequalize
 import {DataTypes} from "sequelize";
 
-const RolesModel = db.define('preferences', {
+const OrderHistoryModel = db.define('order_history', {
     cliente_id: {
         type: DataTypes.INTEGER, 
         references: {
@@ -18,7 +18,7 @@ const RolesModel = db.define('preferences', {
           key: 'id',
         },
     },
-    preference_units: { type: DataTypes.INTEGER},
+    quantity: { type: DataTypes.INTEGER},
 })
 
-export default RolModel
+export default OrderHistoryModel
