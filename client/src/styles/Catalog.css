@@ -1,0 +1,191 @@
+/* catalog.css */
+
+/* Estilos generales */
+body {
+  margin: 0;
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Contenedor principal */
+.catalog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Contenedor de ancho completo */
+.full-width-container-catalog {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Barra lateral izquierda */
+.sidebar-catalog {
+  width: 250px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: #333;
+  border-right: 2px solid #ccc;
+  background-color: #C0D6B1;
+}
+
+/* Fondo blanco */
+.white-background-catalog {
+  background-color: #E8E3C4;
+  flex: 1;
+}
+
+
+/* Logo centrado en la parte superior con margen superior ajustado */
+.logo-container-catalog {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: -60px;
+}
+
+/* Logo */
+.logo-catalog {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Estilo de los botones del menú con el color verde intercambiado */
+.menu-catalog {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px; /* Espaciado entre el logo y los botones */
+}
+
+.menu-button-catalog {
+  background-color: #C0D6B1; /* Fondo igual al del panel izquierdo */
+  color: #668461;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 10px; /* Espaciado mayor entre los botones */
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold; /* Texto en negrita */
+  font-size: 18px; /* Tamaño de letra más grande */
+  transition: background-color 0.3s; /* Agrega una transición suave */
+}
+
+/* Cambio de color de fondo al presionar y manteniendo el verde oscuro */
+.menu-button-catalog:active {
+  background-color: #E8E3C4; /* Cambio de fondo al presionar */
+  color: #668461; /* Mantener el color de texto al presionar */
+}
+
+/* Estilo del nuevo botón "Cerrar Sesión" */
+
+.menu-button-last-catalog {
+  background-color: #C0D6B1;
+  color: #668461;
+  border: none;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: auto; /* Coloca el botón en la parte inferior */
+  align-self: center; /* Centra horizontalmente en el panel */
+  position: absolute;
+  bottom: 10px; /* Ajusta la distancia desde la parte inferior del panel */
+  transition: background-color 0.3s; /* Agrega una transición suave */
+}
+
+
+/* Cambio de color de fondo al presionar para el nuevo botón */
+.menu-button-last-catalog:active {
+  background-color: #668461;
+  color: #E8E3C4;
+}
+
+
+/* Estilo para el contenedor del carrusel en el panel derecho */
+.carousel-container-catalog {
+  display: flex;
+  justify-content: center; /* Agrega esta línea para centrar horizontalmente */
+  align-items: center;
+  height: 78%;
+  background-color: #E8E3C4;
+}
+
+
+/* Estilos para el carrusel en sí */
+.carousel-catalog {
+  max-width: 100%; /* Ajusta el ancho del carrusel según tus necesidades */
+}
+
+/* Estilo para las imágenes dentro del carrusel */
+.carousel-img-catalog {
+  max-width: 2000px; /* Ajusta el tamaño de las imágenes dentro del carrusel */
+  max-height: 700px;
+}
+
+ /* Estilos para los botones de redes sociales */
+ .social-button-catalog {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 82px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para las imágenes dentro de los botones */
+.social-button-img-catalog {
+  width: 30px; /* Ajusta el ancho de los iconos según tus preferencias */
+  height: 30px; /* Ajusta la altura de los iconos según tus preferencias */
+}
+
+/* Cambios de color al pasar el mouse sobre los botones */
+.social-button-catalog:hover {
+  background-color: #668461;
+  border-radius: 40%;
+  transition: background-color 0.3s; 
+}
+
+.social-icons-catalog {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.welcome-catalog {
+  margin-top: 82px;
+  margin-right: 250px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: lighter;
+  font-style: oblique;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Cuatro columnas con un ancho mínimo de 200px */
+  gap: 20px; /* Espacio entre los elementos de la cuadrícula */
+  padding: 40px;
+}
+
+.product-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.catalog-scroll-container {
+  max-height: 600px; /* Altura máxima del contenedor de la cuadrícula (ajusta según tus preferencias) */
+  overflow-y: auto; /* Habilita la barra de desplazamiento vertical cuando sea necesario */
+}

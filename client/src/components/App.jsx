@@ -10,12 +10,14 @@ import HomeAdmin from '../pages/HomeAdmin';
 import Add from '../pages/Add';
 import EgressHistory from '../pages/EgressHistory';
 import IncomeHistory from '../pages/IncomeHistory';
+import Catalog from '../pages/Catalog';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />}></Route>
+        <Route path="/catalog" element={<Catalog />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/homeAdmin" element={<HomeAdmin />}></Route>
