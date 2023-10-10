@@ -23,6 +23,7 @@ router.put('/updateProductStock/:id', updateProductStock);
 
 router.get('/allUsers/', getAllUsers)
 router.get('/getUser/:id', getUser)
+router.get('/getUser/:rol', getUser)
 router.post('/createUser/', createUser)
 router.put('/updateUser/:id', updateUser)
 router.delete('/deleteUser/:id', deleteUser)
