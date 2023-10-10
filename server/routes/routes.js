@@ -5,6 +5,7 @@ import { createUser, deleteUser, getAllUsers, getUser, updateUser } from '../con
 import { createEgress, deleteEgress, getAllEgress, getEgress, updateEgress } from '../controllers/EgressController.js'
 import { createIncome, deleteIncome, getAllIncomes, getIncome, updateIncome } from '../controllers/IncomeController.js'
 import { createClient, deleteClient, getAllClients, getClient, updateClient } from '../controllers/ClientController.js'
+import { createPreference, deletePreference, getAllPreference, getPreference, updatePreference } from '../controllers/PreferenceController.js'
 const router = express.Router()
 
 router.get('/allSoaps/', getAllSoaps)
@@ -26,11 +27,11 @@ router.post('/createUser/', createUser)
 router.put('/updateUser/:id', updateUser)
 router.delete('/deleteUser/:id', deleteUser)
 
-router.get('/allClient/', getAllClients)
-router.get('/getClient/:id', getClient)
-router.post('/createClient/', createClient)
-router.put('/updateClient/:id', updateClient)
-router.delete('/deleteClient/:id', deleteClient)
+router.get('/allPreference/', getAllPreference)
+router.get('/getPreference/:id', getPreference)
+router.post('/createPreference/', createPreference)
+router.put('/updatePreference/:id', updatePreference)
+router.delete('/deletePreference/:id', deletePreference)
 
 router.get('/allEgress/', getAllEgress)
 router.get('/getEgress/:id', getEgress)
@@ -43,5 +44,11 @@ router.get('/getIncome/:id', getIncome)
 router.post('/createIncome/', createIncome)
 router.put('/updateIncome/:id', updateIncome)
 router.delete('/deleteIncome/:id', deleteIncome)
+
+router.get('/allClient/', getAllClients)
+router.get('/getClient/:id', getClient)
+router.post('/createClient/', createClient)
+router.put('/updateClient/:id', updateClient)
+router.delete('/deleteClient/:id', deleteClient)
 
 export default router
