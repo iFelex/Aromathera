@@ -36,11 +36,11 @@ try {
 }
 
 app.post('/api/login', async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, rol } = req.body;
 
   // Imprime las credenciales en la consola
   console.log('Credenciales de inicio de sesión recibidas:');
-  console.log(username, password);
+  console.log(username, password, rol);
 
   //let passwordHaash = await bcryptjs.hash(password, 8);
   try {
@@ -48,8 +48,9 @@ app.post('/api/login', async (req, res) => {
     console.log(user)
     if (user.username == username && password == user.password) {
       console.log("acceso concedido\n");
-      // Agrega un 1 a la respuesta
-      res.status(200).send({ acceso: true });
+      const userRole = user.rol;
+
+      return res.status(200).json({ acceso: true, rol: userRole }); // Enviar el rol en la respuesta
     }
 
 

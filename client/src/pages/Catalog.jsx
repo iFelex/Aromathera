@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { Carousel } from 'react-responsive-carousel';
 import '../styles/Catalog.css';
 import logo from '../imgs/logo_transparent.png';
-import facebook from '../imgs/facebook.png';
-import twitter from '../imgs/twitter.png';
-import instagram from '../imgs/instagram.png';
+import ProductPopup from '../components/ProductPopup';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function Catalog() {
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    // Definir una función asincrónica para obtener productos
     async function fetchProducts() {
       try {
         const response = await axios.get('http://localhost:3001/allProducts');
@@ -23,10 +21,23 @@ function Catalog() {
         console.error('Error fetching products:', error);
       }
     }
-
-    // Llamar a la función para obtener productos
     fetchProducts();
   }, []);
+
+  const handleAddToCartClick = (product) => {
+    setSelectedProduct(product);
+    setQuantity(1);
+  };
+
+  const handleIncrement = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
   return (
     <div className="catalog-container">
@@ -37,15 +48,6 @@ function Catalog() {
           </div>
           <div className="menu-catalog">
             <button className="menu-button-catalog">Inicio</button>
-            <Link to="/inventory">
-              <button className="menu-button-catalog">Gestionar inventario</button>
-            </Link>
-            <Link to="/egressHistory">
-              <button className="menu-button-catalog">Historial de gastos</button>
-            </Link>
-            <Link to="/incomeHistory">
-              <button className="menu-button-catalog">Historial de ingresos</button>
-            </Link>
             <Link to="/catalog">
               <button className="menu-button-catalog">Catalogo</button>
             </Link>
@@ -62,25 +64,38 @@ function Catalog() {
                   <img src={product.image} alt={product.name} className="product-image" />
                   <h3 className="product-name">{product.name}</h3>
                   <p className="product-price">{product.price}</p>
-                  <button className="add-to-cart-button">Agregar al carrito</button>
+                  <button
+                    className="add-to-cart-button"
+                    onClick={() => handleAddToCartClick(product)}
+                  >
+                    Agregar al carrito
+                  </button>
                 </div>
               ))}
             </div>
           </div>
           <div className="social-icons-catalog">
-            <h1 className='welcome-catalog'>Bienvenido! @Admin</h1>
-            <button className="social-button-catalog">
-              <img src={facebook} alt="Facebook" className="social-button-img-catalog" />
-            </button>
-            <button className="social-button-catalog">
-              <img src={twitter} alt="Twitter" className="social-button-img-catalog" />
-            </button>
-            <button className="social-button-catalog">
-              <img src={instagram} alt="Instagram" className="social-button-img-catalog" />
-            </button>
+            {/* Resto del contenido de los botones sociales */}
           </div>
         </div>
       </div>
+      {selectedProduct && (
+        <div className="product-popup">
+          <div className="product-popup-content">
+            <img src={selectedProduct.image} alt={selectedProduct.name} />
+            <h3>{selectedProduct.name}</h3>
+            <p>{selectedProduct.price}</p>
+            <div className="product-quantity">
+              <button onClick={handleDecrement}>-</button>
+              <span>{quantity}</span>
+              <button onClick={handleIncrement}>+</button>
+            </div>
+            <button className="add-to-cart-button" onClick={() => setSelectedProduct(null)}>
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

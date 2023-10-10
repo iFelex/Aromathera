@@ -5,12 +5,13 @@ import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import axios from 'axios';
-import { Link, Navigate } from 'react-router-dom';
-import Swal from 'sweetalert2'; // Importar SweetAlert2
+import { Navigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [redirectToHomeAdmin, setRedirectToHomeAdmin] = useState(false);
   const [redirectToHome, setRedirectToHome] = useState(false);
   const [error, setError] = useState('');
 
@@ -31,9 +32,9 @@ function Login() {
         password,
       });
 
-      // Si el usuario se ha autenticado correctamente, navega a /home
+      console.log('Valor de rol en respuesta:', response.data.rol);
+
       if (response.status === 200 && response.data.acceso) {
-        // Mostrar una notificación de SweetAlert2
         Swal.fire({
           icon: 'success',
           title: 'Inicio de Sesión Exitoso',
@@ -41,7 +42,13 @@ function Login() {
           confirmButtonColor: '#668461',
         });
 
-        setRedirectToHome(true);
+        if (response.data.rol === 'admin') {
+          console.log('Usuario es admin, redireccionando a /homeAdmin');
+          setRedirectToHomeAdmin(true);
+        } else {
+          console.log('Usuario no es admin, redireccionando a /home');
+          setRedirectToHome(true);
+        }
       }
     } catch (error) {
       setError('Credenciales incorrectas');
@@ -49,15 +56,17 @@ function Login() {
         icon: 'error',
         title: 'Inicio de Sesión Fallido',
         text: 'Tus credenciales son incorrectas.',
-        confirmButtonColor: '#668461', 
+        confirmButtonColor: '#668461',
       });
       console.log('Credenciales incorrectas');
       console.error('Error al enviar la solicitud:', error);
     }
   };
 
-  if (redirectToHome) {
+  if (redirectToHomeAdmin) {
     return <Navigate to="/homeAdmin" />;
+  } else if (redirectToHome) {
+    return <Navigate to="/home" />;
   }
 
   return (
@@ -84,7 +93,6 @@ function Login() {
               <button className="login-button" type="submit">
                 Iniciar Sesión
               </button>
-
             </div>
           </form>
         </div>

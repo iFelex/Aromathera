@@ -10,6 +10,7 @@ import jabon1 from '../imgs/jabon1.jpg';
 import jabon2 from '../imgs/jabon2.jpg';
 import jabon3 from '../imgs/jabon3.jpg';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -21,13 +22,13 @@ function Home() {
           </div>
           <div className="menu-home">
             <button className="menu-button-home">Inicio</button>
-            <button className="menu-button-home">Catálogo</button>
-            <button className="menu-button-home">Crea tu propio jabón</button>
-            <button className="menu-button-home">Historial</button>
-            <button className="menu-button-home">Nosotros</button>
-            <Link to="/login">
-              <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
+            <Link to="/catalog">
+              <button className="menu-button-home">Catalogo</button>
             </Link>
+            <Link to="/login">
+              <button className="menu-button-last-home">Cerrar Sesión</button>
+            </Link>
+
           </div>
         </div>
         <div className="content-home white-background-home">
@@ -53,7 +54,7 @@ function Home() {
           </div>
           {/* Botones de redes sociales */}
           <div className="social-icons-home">
-            <h1 className='welcome-home'>Bienvenido! @Username</h1>
+            <h1 className='welcome-home'>Bienvenido! @Admin</h1>
             <button className="social-button-home">
               <img src={facebook} alt="Facebook" className="social-button-img-home" />
             </button>
