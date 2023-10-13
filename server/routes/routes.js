@@ -5,6 +5,7 @@ import { createUser, deleteUser, getAllUsers, getUser, updateUser } from '../con
 import { createEgress, deleteEgress, getAllEgress, getEgress, updateEgress } from '../controllers/EgressController.js'
 import { createIncome, deleteIncome, getAllIncomes, getIncome, updateIncome } from '../controllers/IncomeController.js'
 import { createClient, deleteClient, getAllClients, getClient, updateClient } from '../controllers/ClientController.js'
+import { createShoppingCart, deleteShoppingCart, getAllShoppingCarts, getShoppingCart, updateShoppingCart } from '../controllers/ShoppingCartController.js'
 import { createPreference, deletePreference, getAllPreference, getPreference, updatePreference } from '../controllers/PreferenceController.js'
 const router = express.Router()
 
@@ -13,6 +14,12 @@ router.get('/getSoap/:id', getSoap)
 router.post('/createSoap/', createSoap)
 router.put('/updateUser/:id', updateSoap)
 router.delete('/deleteSoap/:id', deleteSoap)
+
+router.get('/allShoppingCarts/', getAllShoppingCarts)
+router.get('/getShoppingCartt/:id', getShoppingCart)
+router.post('/createShoppingCart/', createShoppingCart)
+router.put('/updateShoppingCart/:id', updateShoppingCart)
+router.delete('/deleteShoppingCart/:id', deleteShoppingCart)
 
 router.get('/allProducts/', getAllProducts)
 router.get('/getProduct/:id', getProduct)
