@@ -78,6 +78,17 @@ function Catalog() {
         return product.name.toLowerCase().includes(searchTerm.toLowerCase());
       });
 
+      if (filteredProducts.length === 0) {
+        // Muestra un mensaje de SweetAlert2 si no se encuentran coincidencias
+        Swal.fire({
+          icon: 'warning',
+          title: 'No se encontraron productos',
+          text: 'No hay productos que coincidan con tu búsqueda.',
+          confirmButtonColor: '#668461',
+        });
+        handleResetCatalog();
+      }
+
       setProducts(filteredProducts);
     } else {
       alert('Por favor, ingresa un término de búsqueda válido sin números ni caracteres especiales.');

@@ -15,6 +15,7 @@ function ProductCard({ product, onAddToCart }) {
       <img src={product.image} alt={product.name} className="product-image" />
       <h3 className="product-name">{product.name}</h3>
       <p className="product-price">${product.sale_price}</p>
+      <p className='product-presentacion'>Unidad por {product.presentation}</p>
       <input
         className="product-quantity-input"
         type="number"

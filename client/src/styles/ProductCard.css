@@ -7,7 +7,7 @@
     margin-top: 10px;
     font-family: "Quicksand", sans-serif;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 15px;
     transition: background-color 0.3s;
   }
   
@@ -33,7 +33,18 @@
   .product-quantity-input {
     width: 40px; /* Ancho pequeño */
     height: 20px;
-    padding: 5px;
     margin-left: 10px; /* Margen a la izquierda para separar del botón */
   }
   
+  /* Estilos para los párrafos de precio y presentación */
+.product-price {
+  font-size: 16px; /* Tamaño de letra para el precio */
+  color: #668461; /* Color del texto del precio */
+  margin: 5px 0; /* Espaciado en la parte superior e inferior del párrafo */
+}
+
+.product-presentacion {
+  font-size: 12px; /* Tamaño de letra para la presentación */
+  color: #333; /* Color del texto de la presentación */
+  margin: 5px 0; /* Espaciado en la parte superior e inferior del párrafo */
+}
