@@ -1,0 +1,39 @@
+/* Estilo del botón "Agregar al carrito" */
+.add-to-cart-button {
+    background-color: #C0D6B1;
+    color: #668461;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    transition: background-color 0.3s;
+  }
+  
+  /* Cambio de color de fondo al presionar para los botones "Agregar al carrito" */
+  .add-to-cart-button:active {
+    background-color: #668461;
+    color: #E8E3C4;
+  }
+  
+  /* Estilo del botón del carrito (puedes ajustar el tamaño del icono) */
+  .cart-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Estilo del icono del carrito */
+  .cart-icon {
+    width: 60px; /* Ajusta el tamaño del icono según tus necesidades */
+  }
+  
+  /* Estilo del input de cantidad */
+  .product-quantity-input {
+    width: 40px; /* Ancho pequeño */
+    height: 20px;
+    padding: 5px;
+    margin-left: 10px; /* Margen a la izquierda para separar del botón */
+  }
+  

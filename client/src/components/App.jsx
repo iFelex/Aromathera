@@ -11,6 +11,7 @@ import Add from '../pages/Add';
 import EgressHistory from '../pages/EgressHistory';
 import IncomeHistory from '../pages/IncomeHistory';
 import Catalog from '../pages/Catalog';
+import ShoppingCart from '../pages/ShoppingCart';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route path="/catalog" element={<Catalog />}></Route>
+        <Route path="/cart" element={<ShoppingCart />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/homeAdmin" element={<HomeAdmin />}></Route>
