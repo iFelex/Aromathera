@@ -26,7 +26,7 @@ router.get('/getProduct/:id', getProduct)
 router.post('/createProduct/', createProduct)
 router.put('/updateProduct/:id', updateProduct)
 router.delete('/deleteProduct/:id', deleteProduct)
-router.put('/updateProductStock/:id', updateProductStock);
+router.put('/updateProductStock/:name', updateProductStock);
 
 router.get('/allUsers/', getAllUsers)
 router.get('/getUser/:id', getUser)

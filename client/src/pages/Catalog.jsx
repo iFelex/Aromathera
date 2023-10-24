@@ -29,24 +29,48 @@ function Catalog() {
 
   const handleAddToCartClick = async (product, quantity) => {
     try {
-      const response = await axios.post('http://localhost:3001/createShoppingCart', {
-        name: product.name,
-        presentation: product.presentation,
-        sale_price: product.sale_price,
-        image: product.image,
-        stock: quantity,
+      // Actualiza el stock del producto en la tabla principal
+      const response = await axios.put(`http://localhost:3001/updateProduct/${product.id}`, {
+        stock: product.stock - quantity,
       });
-      // Muestra una notificación de éxito
-      Swal.fire({
-        icon: 'success',
-        title: 'Producto Agregado al Carrito',
-        text: `${quantity} ${product.name} se ha agregado al carrito.`,
-        confirmButtonColor: '#668461',
-      });
-      // Puedes manejar la respuesta del servidor si es necesario
-      console.log(response.data);
+  
+      // Verifica si la actualización fue exitosa
+      if (response.status === 200) {
+        // Realiza la solicitud para agregar el producto al carrito
+        const cartResponse = await axios.post('http://localhost:3001/createShoppingCart', {
+          name: product.name,
+          presentation: product.presentation,
+          sale_price: product.sale_price,
+          image: product.image,
+          stock: quantity,
+        });
+  
+        // Muestra una notificación de éxito
+        Swal.fire({
+          icon: 'success',
+          title: 'Producto Agregado al Carrito',
+          text: `${quantity} ${product.name} se ha agregado al carrito.`,
+          confirmButtonColor: '#668461',
+        });
+  
+        // Puedes manejar la respuesta del servidor si es necesario
+        console.log(cartResponse.data);
+  
+        // Actualiza el estado de productos en tu componente para reflejar los cambios en el stock
+        const updatedProducts = [...products];
+        const productIndex = updatedProducts.findIndex((p) => p.id === product.id);
+        updatedProducts[productIndex].stock -= quantity;
+        setProducts(updatedProducts);
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un problema al actualizar el stock del producto.',
+          confirmButtonColor: '#FF0000',
+        });
+      }
     } catch (error) {
-      // Muestra una notificación de error si ocurre un problema al agregar al carrito
+      // Muestra una notificación de error si ocurre un problema al agregar al carrito o actualizar el stock
       console.error('Error al agregar el producto al carrito:', error);
       Swal.fire({
         icon: 'error',

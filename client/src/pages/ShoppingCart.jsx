@@ -34,12 +34,26 @@ function ShoppingCart() {
     fetchShoppingCarts();
   }, []);
 
-  const handleDeleteCartItem = async (cartId, salePrice, stock) => {
+  const handleDeleteCartItem = async (cartId, salePrice, stock, productName) => {
     try {
       // Realiza la solicitud DELETE al servidor para eliminar el carrito con el ID especificado.
       await fetch(`http://localhost:3001/deleteShoppingCart/${cartId}`, {
         method: 'DELETE',
       });
+
+      // Calcula el nuevo stock sumando la cantidad del producto en el carrito al stock principal
+      // Ajusta 'stock' según la estructura de datos
+      const stockAddition = stock;
+
+      // Realiza la solicitud para actualizar el stock del producto en el servidor
+      await fetch(`http://localhost:3001/updateProductStock/${productName}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ stockAddition: stockAddition }), // Usar el nombre correcto
+      });
+
 
       // Actualiza la interfaz eliminando el carrito correspondiente.
       setShoppingCarts((prevShoppingCarts) =>
@@ -108,7 +122,7 @@ function ShoppingCart() {
                     <td>
                       <button
                         className='delete-button'
-                        onClick={() => handleDeleteCartItem(cart.id, cart.sale_price, cart.stock)}
+                        onClick={() => handleDeleteCartItem(cart.id, cart.sale_price, cart.stock, cart.name)}
                       >
                         Eliminar
                       </button>
