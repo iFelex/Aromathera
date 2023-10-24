@@ -5,6 +5,7 @@ import { createUser, deleteUser, getAllUsers, getUser, updateUser } from '../con
 import { createEgress, deleteEgress, getAllEgress, getEgress, updateEgress } from '../controllers/EgressController.js'
 import { createIncome, deleteIncome, getAllIncomes, getIncome, updateIncome } from '../controllers/IncomeController.js'
 import { createClient, deleteClient, getAllClients, getClient, updateClient } from '../controllers/ClientController.js'
+import { createOrderClient, deleteOrderClient, getAllOrderClients, getOrderClient, updateOrderClient } from '../controllers/OrderClientController.js'
 import { createShoppingCart, deleteShoppingCart, getAllShoppingCarts, getShoppingCart, updateShoppingCart } from '../controllers/ShoppingCartController.js'
 import { createPreference, deletePreference, getAllPreference, getPreference, updatePreference } from '../controllers/PreferenceController.js'
 const router = express.Router()
@@ -59,4 +60,9 @@ router.post('/createClient/', createClient)
 router.put('/updateClient/:id', updateClient)
 router.delete('/deleteClient/:id', deleteClient)
 
+router.get('/allClient/', getAllOrderClients)
+router.get('/getClient/:id', getOrderClient)
+router.post('/createClient/', createOrderClient)
+router.put('/updateClient/:id', updateOrderClient)
+router.delete('/deleteClient/:id', deleteOrderClient)
 export default router
