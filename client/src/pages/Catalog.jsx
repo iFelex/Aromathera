@@ -9,7 +9,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
-import serverAddress from '../config';
+import { serverAddress } from '../config';
+
 
 function Catalog() {
   const [products, setProducts] = useState([]);

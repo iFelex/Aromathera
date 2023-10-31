@@ -8,7 +8,7 @@ import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
-import serverAddress from '../config';
+import { serverAddress } from '../config';
 
 function ShoppingCart() {
   const [shoppingCarts, setShoppingCarts] = useState([]);
@@ -69,12 +69,31 @@ function ShoppingCart() {
     }
   };
 
-  const handlePayment = () => {
-    // Add your payment processing logic here
-    // This is a placeholder function for handling payments
-    // You should integrate with a payment gateway like Stripe or PayPal
-    // and implement the payment flow here.
+  const handlePayment = async () => {
+    try {
+      const response = await fetch(`http://${serverAddress}:3001/paymentLink/${totalPrice}`, {
+        method: 'POST',
+      });
+      const data = await response.json();
+      const paymentLink = data.paymentLink;
+    
+      // Muestra el enlace de pago en la consola
+      console.log('Enlace de pago:', paymentLink);
+    
+      // Redirige al usuario al enlace de pago (puede abrirse en una nueva ventana o ventana emergente)
+      window.open(paymentLink, '_blank');
+    } catch (error) {
+      console.error('Error al obtener el enlace de pago:', error);
+      // Muestra una notificación de error si ocurre un problema al obtener el enlace de pago.
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un problema al obtener el enlace de pago.',
+        confirmButtonColor: '#FF0000',
+      });
+    }
   };
+  
 
   return (
     <div className="shoppingcarts-container">

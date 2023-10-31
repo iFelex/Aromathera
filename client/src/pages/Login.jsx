@@ -7,7 +7,8 @@ import instagram from '../imgs/instagram.png';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import serverAddress from '../config';
+import { serverAddress } from '../config';
+
 
 function Login() {
   const [username, setUsername] = useState('');

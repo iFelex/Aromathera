@@ -7,7 +7,8 @@ import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
-import serverAddress from '../config';
+import { serverAddress } from '../config';
+
 
 function IncomeHistory() {
   const [incomes, setincomees] = useState([]);

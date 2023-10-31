@@ -7,7 +7,8 @@ import instagram from '../imgs/instagram.png';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import serverAddress from '../config';
+import { serverAddress } from '../config';
+
 
 function Egress() {
   // Datos del producto
