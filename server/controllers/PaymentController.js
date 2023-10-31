@@ -27,7 +27,7 @@ export const paymentLink = async (req, res) => {
       
         const response = await axios.post(url, data, { headers });
         const routeLink = response.data.data.routeLink;
-        console.log(response) 
+        
         res.json({ routeLink });
 
     }catch (error) {
