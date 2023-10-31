@@ -6,6 +6,7 @@ import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import serverAddress from '../config';
 
 function Add() {
   // Estado para los campos del formulario
@@ -63,7 +64,7 @@ function Add() {
     }
 
     // Realizar la solicitud al backend para crear el producto
-    fetch('http://localhost:3001/createProduct/', {
+    fetch(`http://${serverAddress}:3001/createProduct/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

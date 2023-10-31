@@ -7,6 +7,7 @@ import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import serverAddress from '../config';
 
 function Inventory() {
   const [products, setProducts] = useState([]);
@@ -32,7 +33,7 @@ function Inventory() {
     }).then((result) => {
       if (result.isConfirmed) {
         // Realizar la solicitud DELETE al servidor
-        fetch(`http://localhost:3001/deleteProduct/${productId}`, {
+        fetch(`http://${serverAddress}:3001/deleteProduct/${productId}`, {
           method: 'DELETE',
         })
           .then((response) => response.json())
@@ -64,7 +65,7 @@ function Inventory() {
   };
 
   useEffect(() => {
-    fetch('http://localhost:3001/allProducts')
+    fetch(`http://${serverAddress}:3001/allProducts`)
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error('Error fetching products:', error));

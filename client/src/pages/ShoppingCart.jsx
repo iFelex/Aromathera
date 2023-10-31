@@ -7,6 +7,7 @@ import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import serverAddress from '../config';
 
 function ShoppingCart() {
   const [shoppingCarts, setShoppingCarts] = useState([]);
@@ -15,7 +16,7 @@ function ShoppingCart() {
   useEffect(() => {
     async function fetchShoppingCarts() {
       try {
-        const response = await fetch('http://localhost:3001/allShoppingCarts');
+        const response = await fetch(`http://${serverAddress}:3001/allShoppingCarts`);
         const data = await response.json();
         console.log('Datos de carritos de compra:', data); // Agregar para depuración
         setShoppingCarts(data);
@@ -37,7 +38,7 @@ function ShoppingCart() {
   const handleDeleteCartItem = async (cartId, salePrice, stock, productName) => {
     try {
       // Realiza la solicitud DELETE al servidor para eliminar el carrito con el ID especificado.
-      await fetch(`http://localhost:3001/deleteShoppingCart/${cartId}`, {
+      await fetch(`http://${serverAddress}:3001/deleteShoppingCart/${cartId}`, {
         method: 'DELETE',
       });
 
@@ -46,7 +47,7 @@ function ShoppingCart() {
       const stockAddition = stock;
 
       // Realiza la solicitud para actualizar el stock del producto en el servidor
-      await fetch(`http://localhost:3001/updateProductStock/${productName}`, {
+      await fetch(`http://${serverAddress}:3001/updateProductStock/${productName}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

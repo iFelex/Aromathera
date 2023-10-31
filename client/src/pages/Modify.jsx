@@ -7,6 +7,7 @@ import instagram from '../imgs/instagram.png';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import serverAddress from '../config';
 
 function Modify() {
   // Datos del producto
@@ -64,7 +65,7 @@ function Modify() {
   // Manejar el envío del formulario
   const handleSubmit = () => {
     // Realizar la solicitud al backend para actualizar el producto
-    fetch('http://localhost:3001/updateProduct/' + product.id, {
+    fetch(`http://${serverAddress}:3001/updateProduct/` + product.id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

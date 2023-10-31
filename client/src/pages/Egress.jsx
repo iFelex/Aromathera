@@ -7,6 +7,7 @@ import instagram from '../imgs/instagram.png';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import serverAddress from '../config';
 
 function Egress() {
   // Datos del producto
@@ -20,7 +21,7 @@ function Egress() {
 
   // Obtener la lista de clientes desde la ruta especificada
   useEffect(() => {
-    fetch('http://localhost:3001/allClient')
+    fetch(`http://${serverAddress}:3001/allClient`)
       .then((response) => response.json())
       .then((data) => {
         console.log('Datos de clientes:', data); // Agrega esta línea
@@ -97,7 +98,7 @@ function Egress() {
     };
 
     // Realizar la solicitud al backend para guardar la información en la base de datos
-    fetch('http://localhost:3001/createEgress', {
+    fetch(`http://${serverAddress}:3001/createEgress`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -128,7 +129,7 @@ function Egress() {
     };
 
     // Realizar la solicitud al backend para actualizar el producto
-    fetch('http://localhost:3001/updateProduct/' + product.id, {
+    fetch(`http://${serverAddress}:3001/updateProduct/` + product.id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

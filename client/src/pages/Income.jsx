@@ -7,6 +7,7 @@ import instagram from '../imgs/instagram.png';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import serverAddress from '../config';
 
 function Income() {
   // Datos del producto
@@ -20,7 +21,7 @@ function Income() {
 
   // Obtener la lista de clientes desde la ruta especificada
   useEffect(() => {
-    fetch('http://localhost:3001/allClient')
+    fetch(`http://${serverAddress}:3001/allClient`)
       .then((response) => response.json())
       .then((data) => {
         console.log('Datos de clientes:', data); // Agrega esta línea
@@ -86,7 +87,7 @@ function Income() {
     };
 
     // Realizar la solicitud al backend para guardar la información en la base de datos
-    fetch('http://localhost:3001/createIncome', {
+    fetch(`http://${serverAddress}:3001/createIncome`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -117,7 +118,7 @@ function Income() {
     };
 
     // Realizar la solicitud al backend para actualizar el producto
-    fetch('http://localhost:3001/updateProduct/' + product.id, {
+    fetch(`http://${serverAddress}:3001/updateProduct/` + product.id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
