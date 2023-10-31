@@ -8,6 +8,7 @@ import { createClient, deleteClient, getAllClients, getClient, updateClient } fr
 import { createOrderClient, deleteOrderClient, getAllOrderClients, getOrderClient, updateOrderClient } from '../controllers/OrderClientController.js'
 import { createShoppingCart, deleteShoppingCart, getAllShoppingCarts, getShoppingCart, updateShoppingCart } from '../controllers/ShoppingCartController.js'
 import { createPreference, deletePreference, getAllPreference, getPreference, updatePreference } from '../controllers/PreferenceController.js'
+import { paymentLink} from '../controllers/PaymentController.js'
 const router = express.Router()
 
 router.get('/allSoaps/', getAllSoaps)
@@ -65,4 +66,7 @@ router.get('/getClient/:id', getOrderClient)
 router.post('/createClient/', createOrderClient)
 router.put('/updateClient/:id', updateOrderClient)
 router.delete('/deleteClient/:id', deleteOrderClient)
+
+router.post('/paymentLink/:amount', paymentLink)
+
 export default router

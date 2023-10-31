@@ -7,6 +7,7 @@ import instagram from '../imgs/instagram.png';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import serverAddress from '../config';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -27,7 +28,7 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/api/login', {
+      const response = await axios.post(`http://${serverAddress}:3001/api/login`, {
         username,
         password,
       });

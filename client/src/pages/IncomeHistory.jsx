@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import '../styles/incomehistory.css';
+import '../styles/IncomeHistory.css';
 import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import serverAddress from '../config';
 
 function IncomeHistory() {
   const [incomes, setincomees] = useState([]);
@@ -25,7 +26,7 @@ function IncomeHistory() {
 
   useEffect(() => {
     // Realizar la solicitud GET al servidor para obtener los egresos
-    fetch('http://localhost:3001/allIncome')
+    fetch(`http://${serverAddress}:3001/allIncome`)
       .then((response) => response.json())
       .then((data) => {
         console.log('Datos de ingresos:', data); // Agregar para depuración
@@ -34,7 +35,7 @@ function IncomeHistory() {
       .catch((error) => console.error('Error fetching incomees:', error));
 
     // Realizar la solicitud GET al servidor para obtener todos los clientes
-    fetch('http://localhost:3001/allClient')
+    fetch(`http://${serverAddress}:3001/allClient`)
       .then((response) => response.json())
       .then((data) => {
         console.log('Datos de clientes:', data); // Agregar para depuración
@@ -47,7 +48,7 @@ function IncomeHistory() {
       .catch((error) => console.error('Error fetching clients:', error));
 
     // Realizar la solicitud GET al servidor para obtener todos los productos
-    fetch('http://localhost:3001/allProducts')
+    fetch(`http://${serverAddress}:3001/allProducts`)
       .then((response) => response.json())
       .then((data) => {
         console.log('Datos de productos:', data); // Agregar para depuración

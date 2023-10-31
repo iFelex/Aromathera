@@ -9,6 +9,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
+import serverAddress from '../config';
 
 function Catalog() {
   const [products, setProducts] = useState([]);
@@ -17,7 +18,7 @@ function Catalog() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get('http://localhost:3001/allProducts');
+        const response = await axios.get(`http://${serverAddress}:3001/allProducts`);
         const data = response.data;
         setProducts(data);
       } catch (error) {
@@ -30,7 +31,7 @@ function Catalog() {
   const handleAddToCartClick = async (product, quantity) => {
     try {
       // Actualiza el stock del producto en la tabla principal
-      const response = await axios.put(`http://localhost:3001/updateProduct/${product.id}`, {
+      const response = await axios.put(`http://${serverAddress}:3001/updateProduct/${product.id}`, {
         stock: product.stock - quantity,
       });
   
@@ -38,7 +39,6 @@ function Catalog() {
       if (response.status === 200) {
         // Realiza la solicitud para agregar el producto al carrito
         const cartResponse = await axios.post('http://localhost:3001/createShoppingCart', {
-          id: product.id,
           name: product.name,
           presentation: product.presentation,
           sale_price: product.sale_price,
@@ -85,7 +85,7 @@ function Catalog() {
   const handleResetCatalog = async () => {
     // Restablece la lista de productos a su estado original
     try {
-      const response = await axios.get('http://localhost:3001/allProducts');
+      const response = await axios.get(`http://${serverAddress}:3001/allProducts`);
       const data = response.data;
       setProducts(data);
       // Limpia la barra de búsqueda
