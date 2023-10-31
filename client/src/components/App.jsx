@@ -12,6 +12,7 @@ import EgressHistory from '../pages/EgressHistory';
 import IncomeHistory from '../pages/IncomeHistory';
 import Catalog from '../pages/Catalog';
 import ShoppingCart from '../pages/ShoppingCart';
+import Preference from '../pages/Preference';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/add" element={<Add />}></Route>
         <Route path="/egressHistory" element={<EgressHistory />}></Route>
         <Route path="/incomeHistory" element={<IncomeHistory />}></Route>
+        <Route path="/preference" element={<Preference />}></Route>
       </Routes>
     </Router>
   );

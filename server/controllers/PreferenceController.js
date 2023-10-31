@@ -58,3 +58,17 @@ export const deletePreference = async (req, res) => {
         res.json({ message: error.message })
     }
 }
+
+//Eliminar todos los registros en la tabla de preferencias
+export const deleteAllPreference = async (req, res) => {
+    try {
+        await PreferenceModel.destroy({
+            where: {}, // Esto eliminará todos los registros en la tabla
+            truncate: true, // Esto restablecerá el contador de identificación
+        });
+
+        res.json({ message: 'Todos los registros han sido eliminados' });
+    } catch (error) {
+        res.json({ message: error.message });
+    }
+};

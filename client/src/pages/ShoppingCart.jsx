@@ -9,6 +9,7 @@ import instagram from '../imgs/instagram.png';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { serverAddress } from '../config';
+import axios from 'axios';
 
 function ShoppingCart() {
   const [shoppingCarts, setShoppingCarts] = useState([]);
@@ -75,7 +76,7 @@ function ShoppingCart() {
         method: 'POST',
       });
       const data = await response.json();
-      const paymentLink = data.paymentLink;
+      const paymentLink = data.routeLink;
     
       // Muestra el enlace de pago en la consola
       console.log('Enlace de pago:', paymentLink);
@@ -93,7 +94,59 @@ function ShoppingCart() {
       });
     }
   };
+
+  const handleMoveToPreferences = async () => {
+    try {
+      for (const cart of shoppingCarts) {
+        const preferenceData = {
+          name: cart.name,
+          presentation: cart.presentation,
+          stock: cart.stock,
+          sale_price: cart.sale_price,
+          image: cart.image,
+          // Otros campos de preferencia que necesites
+        };
   
+        // Envia el registro de preferencia al servidor
+        const response = await axios.post(`http://${serverAddress}:3001/createPreference`, preferenceData);
+  
+        if (response.status === 200) {
+          // Borra el carrito actual (debes ajustar esta parte si deseas mantener algunos elementos en el carrito)
+          await axios.delete(`http://${serverAddress}:3001/deleteShoppingCart/${cart.id}`);
+        }
+      }
+  
+      // Limpia el estado local
+      setShoppingCarts([]);
+      setTotalPrice(0);
+  
+      // Muestra una notificación de éxito
+      await Swal.fire({
+        icon: 'success',
+        title: 'Productos Correctamente Facturados',
+        text: 'Gracias por su compra!',
+        confirmButtonColor: '#668461',
+      });
+  
+      // Redirige al catálogo usando el componente Link
+      window.location.href = '/catalog';
+    } catch (error) {
+      console.error('Error moving items to preferences:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un problema al mover los productos a tus preferencias.',
+        confirmButtonColor: '#FF0000',
+      });
+    }
+  };
+  
+
+  const handlePaymentAndMoveToPreferences = async () => {
+    await handlePayment();
+    await handleMoveToPreferences();
+  };
+
 
   return (
     <div className="shoppingcarts-container">
@@ -151,7 +204,7 @@ function ShoppingCart() {
 
           {/* Payment Button */}
           <div className="payment-button-container">
-            <button className="payment-button" onClick={handlePayment}>
+            <button className="payment-button" onClick={handlePaymentAndMoveToPreferences}>
               <img
                 src={epayco}
                 alt="Epayco"

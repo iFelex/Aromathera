@@ -5,12 +5,13 @@ import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
+import favicon from '../imgs/preference.png';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { serverAddress } from '../config';
-
+import emailjs from 'emailjs-com';
 
 function Catalog() {
   const [products, setProducts] = useState([]);
@@ -29,57 +30,99 @@ function Catalog() {
     fetchProducts();
   }, []);
 
-  const handleAddToCartClick = async (product, quantity) => {
+  const sendEmail = async (product, userId) => {
+    const emailServiceId = 'service_ug1bvkd';
+    const emailTemplateId = 'template_uixx6m7';
+
+    const emailData = {
+      product: product.name,
+      stock: product.stock,
+      userId,
+    };
+
     try {
-      // Actualiza el stock del producto en la tabla principal
-      const response = await axios.put(`http://${serverAddress}:3001/updateProduct/${product.id}`, {
-        stock: product.stock - quantity,
-      });
-  
-      // Verifica si la actualización fue exitosa
+      const response = await emailjs.send(emailServiceId, emailTemplateId, emailData, userId);
+
       if (response.status === 200) {
-        // Realiza la solicitud para agregar el producto al carrito
-        const cartResponse = await axios.post('http://localhost:3001/createShoppingCart', {
-          name: product.name,
-          presentation: product.presentation,
-          sale_price: product.sale_price,
-          image: product.image,
-          stock: quantity,
-        });
-  
-        // Muestra una notificación de éxito
-        Swal.fire({
-          icon: 'success',
-          title: 'Producto Agregado al Carrito',
-          text: `${quantity} ${product.name} se ha agregado al carrito.`,
-          confirmButtonColor: '#668461',
-        });
-  
-        // Puedes manejar la respuesta del servidor si es necesario
-        console.log(cartResponse.data);
-  
-        // Actualiza el estado de productos en tu componente para reflejar los cambios en el stock
-        const updatedProducts = [...products];
-        const productIndex = updatedProducts.findIndex((p) => p.id === product.id);
-        updatedProducts[productIndex].stock -= quantity;
-        setProducts(updatedProducts);
+        console.log('Email sent successfully!');
       } else {
+        console.error('Error sending email:', response.error);
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
+  };
+
+  const handleAddToCartClick = async (product, quantity) => {
+    const result = await Swal.fire({
+      title: 'Confirmación',
+      text: `¿Seguro que quieres agregar ${quantity} ${product.name} al carrito?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#668461',
+      cancelButtonColor: '#FF0000',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No',
+    });
+
+    if (result.isConfirmed) {
+      try {
+        // Actualiza el stock del producto en la tabla principal
+        const response = await axios.put(`http://${serverAddress}:3001/updateProduct/${product.id}`, {
+          stock: product.stock - quantity,
+        });
+
+        // Verifica si la actualización fue exitosa
+        if (response.status === 200) {
+          const userId = 'm6BIxvzHEsS_se6rD';
+
+          // Send an email if the stock of the product is less than 15
+          if (product.stock - quantity < 15) {
+            await sendEmail(product, userId);
+          }
+          // Realiza la solicitud para agregar el producto al carrito
+          const cartResponse = await axios.post('http://localhost:3001/createShoppingCart', {
+            name: product.name,
+            presentation: product.presentation,
+            sale_price: product.sale_price,
+            image: product.image,
+            stock: quantity,
+          });
+
+          // Muestra una notificación de éxito
+          Swal.fire({
+            icon: 'success',
+            title: 'Producto Agregado al Carrito',
+            text: `${quantity} ${product.name} se ha agregado al carrito.`,
+            confirmButtonColor: '#668461',
+          });
+
+          // Puedes manejar la respuesta del servidor si es necesario
+          console.log(cartResponse.data);
+
+          // Actualiza el estado de productos en tu componente para reflejar los cambios en el stock
+          const updatedProducts = [...products];
+          const productIndex = updatedProducts.findIndex((p) => p.id === product.id);
+          updatedProducts[productIndex].stock -= quantity;
+          setProducts(updatedProducts);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un problema al actualizar el stock del producto.',
+            confirmButtonColor: '#FF0000',
+          });
+        }
+      } catch (error) {
+        // Muestra una notificación de error si ocurre un problema al agregar al carrito o actualizar el stock
+        console.error('Error al agregar el producto al carrito:', error);
         Swal.fire({
           icon: 'error',
           title: 'Error',
-          text: 'Hubo un problema al actualizar el stock del producto.',
+          text: 'Hubo un problema al agregar el producto al carrito.',
           confirmButtonColor: '#FF0000',
         });
       }
-    } catch (error) {
-      // Muestra una notificación de error si ocurre un problema al agregar al carrito o actualizar el stock
-      console.error('Error al agregar el producto al carrito:', error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Hubo un problema al agregar el producto al carrito.',
-        confirmButtonColor: '#FF0000',
-      });
     }
   };
 
@@ -160,6 +203,16 @@ function Catalog() {
             />
             <button onClick={handleSearch}>Buscar</button>
             <button onClick={handleResetCatalog}>Restablecer Catálogo</button>
+            <Link to="/preference">
+              <button className="payment-button">
+                <img
+                  src={favicon}
+                  alt="favicon"
+                  className="favicon-logo"
+                  style={{ width: '20px', height: '20px' }}
+                />
+              </button>
+            </Link>
           </div>
           <div className="catalog-scroll-container">
             <div className="product-grid">

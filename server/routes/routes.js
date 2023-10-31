@@ -6,8 +6,8 @@ import { createEgress, deleteEgress, getAllEgress, getEgress, updateEgress } fro
 import { createIncome, deleteIncome, getAllIncomes, getIncome, updateIncome } from '../controllers/IncomeController.js'
 import { createClient, deleteClient, getAllClients, getClient, updateClient } from '../controllers/ClientController.js'
 import { createOrderClient, deleteOrderClient, getAllOrderClients, getOrderClient, updateOrderClient } from '../controllers/OrderClientController.js'
-import { createShoppingCart, deleteShoppingCart, getAllShoppingCarts, getShoppingCart, updateShoppingCart } from '../controllers/ShoppingCartController.js'
-import { createPreference, deletePreference, getAllPreference, getPreference, updatePreference } from '../controllers/PreferenceController.js'
+import { createShoppingCart, deleteShoppingCart, getAllShoppingCarts, getShoppingCart, updateShoppingCart, deleteAllShoppingCart } from '../controllers/ShoppingCartController.js'
+import { createPreference, deletePreference, getAllPreference, getPreference, updatePreference, deleteAllPreference } from '../controllers/PreferenceController.js'
 import { paymentLink} from '../controllers/PaymentController.js'
 const router = express.Router()
 
@@ -22,6 +22,7 @@ router.get('/getShoppingCartt/:id', getShoppingCart)
 router.post('/createShoppingCart/', createShoppingCart)
 router.put('/updateShoppingCart/:id', updateShoppingCart)
 router.delete('/deleteShoppingCart/:id', deleteShoppingCart)
+router.delete('/deleteAllShoppingCart/', deleteAllShoppingCart)
 
 router.get('/allProducts/', getAllProducts)
 router.get('/getProduct/:id', getProduct)
@@ -42,6 +43,7 @@ router.get('/getPreference/:id', getPreference)
 router.post('/createPreference/', createPreference)
 router.put('/updatePreference/:id', updatePreference)
 router.delete('/deletePreference/:id', deletePreference)
+router.delete('/deleteAllPreference', deleteAllPreference);
 
 router.get('/allEgress/', getAllEgress)
 router.get('/getEgress/:id', getEgress)
