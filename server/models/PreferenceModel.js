@@ -18,7 +18,11 @@ const PreferenceModel = db.define('preferences', {
           key: 'id',
         },
     },
+    name: { type: DataTypes.STRING },
     preference_units: { type: DataTypes.INTEGER},
+    presentation: { type: DataTypes.STRING },
+    sale_price: { type: DataTypes.DOUBLE },
+    image: {type: DataTypes.STRING},    
 })
 
 export default PreferenceModel
