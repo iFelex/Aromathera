@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/income.css';
+import '../styles/Income.css';
 import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
