@@ -51,7 +51,7 @@ export const updateProductStock = async (req, res) => {
     try {
       const { stockAddition } = req.body; // Nuevo stock que deseas agregar
       const product = await ProductModel.findOne({
-        where: { name: req.params.productName },
+        where: { id: req.params.productId },
       });
       console.log(stockAddition);
       if (product) {

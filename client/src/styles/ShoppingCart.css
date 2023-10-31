@@ -159,7 +159,7 @@ body {
 
 .welcome-shoppingcarts {
   margin-top: 20px;
-  margin-right: 230px;
+  margin-right: 360px;
   font-family: "Quicksand", sans-serif;
   font-weight: lighter;
   font-style: oblique;
@@ -291,6 +291,35 @@ body {
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
   font-size: 18px;
-  margin-left: 40px;
   padding-top: 20px;
+}
+
+.payment-button {
+  display: flex;
+  background-color: #C0D6B1;
+  color: #668461;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+  width: 110px; /* Ajusta el ancho del botón al 100% del contenedor */
+  margin-left: 650px;
+  transition: background-color 0.3s; /* Agrega una transición suave */
+}
+
+/* Cambio de color de fondo al presionar el botón de pago */
+.payment-button:active {
+  background-color: #668461;
+  color: #E8E3C4;
+}
+
+.epayco-logo {
+  width: 20px; /* Ajusta el ancho del icono según tus preferencias */
+  height: 20px; /* Ajusta la altura del icono según tus preferencias */
+  margin-left: 5px; /* Ajusta el espacio entre el texto y el icono según tus preferencias */
 }

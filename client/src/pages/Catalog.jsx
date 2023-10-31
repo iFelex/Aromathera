@@ -38,6 +38,7 @@ function Catalog() {
       if (response.status === 200) {
         // Realiza la solicitud para agregar el producto al carrito
         const cartResponse = await axios.post('http://localhost:3001/createShoppingCart', {
+          id: product.id,
           name: product.name,
           presentation: product.presentation,
           sale_price: product.sale_price,

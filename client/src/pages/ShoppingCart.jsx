@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import '../styles/ShoppingCart.css';
+import epayco from '../imgs/epayco.png';
 import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
@@ -17,10 +18,9 @@ function ShoppingCart() {
       try {
         const response = await fetch('http://localhost:3001/allShoppingCarts');
         const data = await response.json();
-        console.log('Datos de carritos de compra:', data); // Agregar para depuración
+        console.log('Datos de carritos de compra:', data);
         setShoppingCarts(data);
 
-        // Calcular el precio total al cargar los productos
         const calculatedTotalPrice = data.reduce(
           (total, cart) => total + cart.sale_price * cart.stock,
           0
@@ -34,26 +34,12 @@ function ShoppingCart() {
     fetchShoppingCarts();
   }, []);
 
-  const handleDeleteCartItem = async (cartId, salePrice, stock, productName) => {
+  const handleDeleteCartItem = async (cartId, salePrice, stock) => {
     try {
       // Realiza la solicitud DELETE al servidor para eliminar el carrito con el ID especificado.
       await fetch(`http://localhost:3001/deleteShoppingCart/${cartId}`, {
         method: 'DELETE',
       });
-
-      // Calcula el nuevo stock sumando la cantidad del producto en el carrito al stock principal
-      // Ajusta 'stock' según la estructura de datos
-      const stockAddition = stock;
-
-      // Realiza la solicitud para actualizar el stock del producto en el servidor
-      await fetch(`http://localhost:3001/updateProductStock/${productName}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ stockAddition: stockAddition }), // Usar el nombre correcto
-      });
-
 
       // Actualiza la interfaz eliminando el carrito correspondiente.
       setShoppingCarts((prevShoppingCarts) =>
@@ -80,6 +66,13 @@ function ShoppingCart() {
         confirmButtonColor: '#FF0000',
       });
     }
+  };
+
+  const handlePayment = () => {
+    // Add your payment processing logic here
+    // This is a placeholder function for handling payments
+    // You should integrate with a payment gateway like Stripe or PayPal
+    // and implement the payment flow here.
   };
 
   return (
@@ -122,7 +115,7 @@ function ShoppingCart() {
                     <td>
                       <button
                         className='delete-button'
-                        onClick={() => handleDeleteCartItem(cart.id, cart.sale_price, cart.stock, cart.name)}
+                        onClick={() => handleDeleteCartItem(cart.id, cart.sale_price, cart.stock)}
                       >
                         Eliminar
                       </button>
@@ -135,6 +128,19 @@ function ShoppingCart() {
           <div className="total-price-container">
             <p>Total a Pagar: ${totalPrice}</p>
           </div>
+
+          {/* Payment Button */}
+          <div className="payment-button-container">
+            <button className="payment-button" onClick={handlePayment}>
+              <img
+                src={epayco}
+                alt="Epayco"
+                className="epayco-logo"
+                style={{ width: '60px', height: '20px' }}
+              />
+            </button>
+          </div>
+
           <div className="social-icons-shoppingcarts">
             <h1 className="welcome-shoppingcarts">Welcome @User</h1>
             <button className="social-button-shoppingcarts">
