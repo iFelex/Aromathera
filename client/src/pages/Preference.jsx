@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import '../styles/preference.css';
+import '../styles/Preference.css';
 import epayco from '../imgs/epayco.png';
 import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';

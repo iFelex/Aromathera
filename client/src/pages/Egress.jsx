@@ -178,6 +178,9 @@ function Egress() {
             <Link to="/inventory">
               <button className="menu-button-egress">Gestionar Inventario</button>
             </Link>
+            <Link to="/orderAdmin">
+              <button className="menu-button-add">Gestión de pedidos</button>
+            </Link>
             <Link to="/login">
               <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
             </Link>

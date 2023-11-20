@@ -25,6 +25,9 @@ function Home() {
             <Link to="/catalog">
               <button className="menu-button-home">Catalogo</button>
             </Link>
+            <Link to="/order">
+              <button className="menu-button-orders">Mis pedidos</button>
+            </Link>
             <Link to="/login">
               <button className="menu-button-last-home">Cerrar Sesión</button>
             </Link>

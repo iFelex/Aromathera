@@ -80,9 +80,13 @@ function ShoppingCart() {
     
       // Muestra el enlace de pago en la consola
       console.log('Enlace de pago:', paymentLink);
-    
-      // Redirige al usuario al enlace de pago (puede abrirse en una nueva ventana o ventana emergente)
-      window.open(paymentLink, '_blank');
+      
+      //window.location.href = paymentLink;
+     
+      // Limpia el estado local
+      setShoppingCarts([]);
+      setTotalPrice(0);
+
     } catch (error) {
       console.error('Error al obtener el enlace de pago:', error);
       // Muestra una notificación de error si ocurre un problema al obtener el enlace de pago.
@@ -103,22 +107,16 @@ function ShoppingCart() {
           presentation: cart.presentation,
           stock: cart.stock,
           sale_price: cart.sale_price,
-          image: cart.image,
-          // Otros campos de preferencia que necesites
-        };
+          image: cart.image
+         };
   
-        // Envia el registro de preferencia al servidor
         const response = await axios.post(`http://${serverAddress}:3001/createPreference`, preferenceData);
   
         if (response.status === 200) {
-          // Borra el carrito actual (debes ajustar esta parte si deseas mantener algunos elementos en el carrito)
-          await axios.delete(`http://${serverAddress}:3001/deleteShoppingCart/${cart.id}`);
+          console.log("Actualización carrito "+cart.id)
+          await axios.patch(`http://${serverAddress}:3001/updateShoppingCart/${cart.id}`);
         }
       }
-  
-      // Limpia el estado local
-      setShoppingCarts([]);
-      setTotalPrice(0);
   
       // Muestra una notificación de éxito
       await Swal.fire({
@@ -128,7 +126,6 @@ function ShoppingCart() {
         confirmButtonColor: '#668461',
       });
   
-      // Redirige al catálogo usando el componente Link
       window.location.href = '/catalog';
     } catch (error) {
       console.error('Error moving items to preferences:', error);
@@ -141,10 +138,35 @@ function ShoppingCart() {
     }
   };
   
+  const handleAddOrder = async () => {
+    try {
+        for (const cart of shoppingCarts) {
+          console.log("Ciclo");
+          const orderClientData = {
+                cart_id: cart.id,
+                status: "Pendiente"
+            };
+
+            const res = await axios.post(`http://${serverAddress}:3001/createOrderClient`, orderClientData);
+            console.log(res)
+          }
+
+    } catch (error) {
+        console.error('Error moving items to OrderClient:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un problema al crear la orden.',
+            confirmButtonColor: '#FF0000',
+        });
+    }
+};
+
 
   const handlePaymentAndMoveToPreferences = async () => {
-    await handlePayment();
+    await handleAddOrder();
     await handleMoveToPreferences();
+    await handlePayment();
   };
 
 
@@ -161,6 +183,9 @@ function ShoppingCart() {
             </Link>
             <Link to="/catalog">
               <button className="menu-button-shoppingcarts">Catálogo</button>
+            </Link>
+            <Link to="/order">
+              <button className="menu-button-shoppingcarts">Mis Pedidos</button>
             </Link>
             <Link to="/login">
               <button className="menu-button-last-shoppingcarts">Cerrar Sesión</button>

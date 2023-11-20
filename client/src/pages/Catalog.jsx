@@ -78,7 +78,7 @@ function Catalog() {
 
           // Send an email if the stock of the product is less than 15
           if (product.stock - quantity < 15) {
-            await sendEmail(product, userId);
+            //await sendEmail(product, userId);
           }
           // Realiza la solicitud para agregar el producto al carrito
           const cartResponse = await axios.post('http://localhost:3001/createShoppingCart', {
@@ -87,6 +87,7 @@ function Catalog() {
             sale_price: product.sale_price,
             image: product.image,
             stock: quantity,
+            id_user: 12
           });
 
           // Muestra una notificación de éxito
@@ -182,6 +183,9 @@ function Catalog() {
               <button className="cart-button">
                 <img src="./src/imgs/cart.png" alt="Carrito de compras" className="cart-icon" />
               </button>
+            </Link>
+            <Link to="/order">
+              <button className="menu-button-orders">Mis pedidos</button>
             </Link>
             <Link to="/login">
               <button className="menu-button-last-catalog">Cerrar Sesión</button>

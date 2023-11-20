@@ -119,9 +119,7 @@ function Add() {
             <button className="menu-button-add">Agregar producto</button>
             <Link to="/inventory">
               <button className="menu-button-add">Gestionar inventario</button>
-
             </Link>
-
             <Link to="/login">
               <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
             </Link>

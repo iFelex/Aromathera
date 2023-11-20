@@ -82,7 +82,9 @@ function IncomeHistory() {
             <Link to="/incomeHistory">
               <button className="menu-button-homeAdmin">Historial de ingresos</button>
             </Link>
-
+            <Link to="/orderAdmin">
+              <button className="menu-button-add">Gestión de pedidos</button>
+            </Link>
             <Link to="/login">
               <button className="menu-button-last-homeAdmin">Cerrar Sesión</button>
             </Link>

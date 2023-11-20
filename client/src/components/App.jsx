@@ -10,6 +10,8 @@ import HomeAdmin from '../pages/HomeAdmin';
 import Add from '../pages/Add';
 import EgressHistory from '../pages/EgressHistory';
 import IncomeHistory from '../pages/IncomeHistory';
+import Order from '../pages/Order';
+import OrderAdmin from '../pages/OrderAdmin';
 import Catalog from '../pages/Catalog';
 import ShoppingCart from '../pages/ShoppingCart';
 import Preference from '../pages/Preference';
@@ -32,7 +34,9 @@ function App() {
         <Route path="/egressHistory" element={<EgressHistory />}></Route>
         <Route path="/incomeHistory" element={<IncomeHistory />}></Route>
         <Route path="/preference" element={<Preference />}></Route>
-      </Routes>
+        <Route path="/order" element={<Order />}></Route>
+        <Route path="/orderAdmin" element={<OrderAdmin />}></Route>
+        </Routes>
     </Router>
   );
 }
