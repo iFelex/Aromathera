@@ -17,7 +17,8 @@ export const paymentLink = async (req, res) => {
             "title": "Pago Aromathera",
             "typeSell": "2",
             "tax": "0",
-            "email": "email@yopmail.com"
+            "email": "email@yopmail.com",
+            "urlResponse": "aromathera.com.co/order"
         };
         
         const headers = {
@@ -27,7 +28,7 @@ export const paymentLink = async (req, res) => {
       
         const response = await axios.post(url, data, { headers });
         const routeLink = response.data.data.routeLink;
-        
+      
         res.json({ routeLink });
 
     }catch (error) {

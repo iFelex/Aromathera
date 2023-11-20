@@ -3,23 +3,15 @@ import db from "../config/db.js";
 //importar sequalize
 import {DataTypes} from "sequelize";
 
-const OrderClientModel = db.define('order_client', {
-    id_order: { type: DataTypes.INTEGER},
-    cliente_id: {
+const OrderClientModel = db.define('order_clients', {
+    cart_id: {
         type: DataTypes.INTEGER, 
         references: {
-          model: 'clients',
+          model: 'shopping_carts',
           key: 'id',
         },
     },
-    producto_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'products',
-          key: 'id',
-        },
-    },
-    quantity: { type: DataTypes.INTEGER},
+    status: { type: DataTypes.STRING(30) }
 })
 
 export default OrderClientModel

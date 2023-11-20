@@ -9,6 +9,7 @@ import { createOrderClient, deleteOrderClient, getAllOrderClients, getOrderClien
 import { createShoppingCart, deleteShoppingCart, getAllShoppingCarts, getShoppingCart, updateShoppingCart, deleteAllShoppingCart } from '../controllers/ShoppingCartController.js'
 import { createPreference, deletePreference, getAllPreference, getPreference, updatePreference, deleteAllPreference } from '../controllers/PreferenceController.js'
 import { paymentLink} from '../controllers/PaymentController.js'
+
 const router = express.Router()
 
 router.get('/allSoaps/', getAllSoaps)
@@ -18,9 +19,9 @@ router.put('/updateUser/:id', updateSoap)
 router.delete('/deleteSoap/:id', deleteSoap)
 
 router.get('/allShoppingCarts/', getAllShoppingCarts)
-router.get('/getShoppingCartt/:id', getShoppingCart)
+router.get('/getShoppingCart/:id', getShoppingCart)
 router.post('/createShoppingCart/', createShoppingCart)
-router.put('/updateShoppingCart/:id', updateShoppingCart)
+router.patch('/updateShoppingCart/:id', updateShoppingCart)
 router.delete('/deleteShoppingCart/:id', deleteShoppingCart)
 router.delete('/deleteAllShoppingCart/', deleteAllShoppingCart)
 
@@ -30,7 +31,6 @@ router.post('/createProduct/', createProduct)
 router.put('/updateProduct/:id', updateProduct)
 router.delete('/deleteProduct/:id', deleteProduct)
 router.put('/updateProductStock/:name', updateProductStock);
-
 router.get('/allUsers/', getAllUsers)
 router.get('/getUser/:id', getUser)
 router.get('/getUser/:rol', getUser)
@@ -63,11 +63,11 @@ router.post('/createClient/', createClient)
 router.put('/updateClient/:id', updateClient)
 router.delete('/deleteClient/:id', deleteClient)
 
-router.get('/allClient/', getAllOrderClients)
-router.get('/getClient/:id', getOrderClient)
-router.post('/createClient/', createOrderClient)
-router.put('/updateClient/:id', updateOrderClient)
-router.delete('/deleteClient/:id', deleteOrderClient)
+router.get('/allOrderClient/', getAllOrderClients)
+router.get('/getOrderClient/:id', getOrderClient)
+router.post('/createOrderClient/', createOrderClient)
+router.put('/updateOrderClient/:id', updateOrderClient)
+router.delete('/deleteOrderClient/:id', deleteOrderClient)
 
 router.post('/paymentLink/:amount', paymentLink)
 

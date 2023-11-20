@@ -6,7 +6,7 @@ import ShoppingCartModel from "../models/ShoppingCartModel.js";
 //Mostrar todos los registros
 export const getAllShoppingCarts = async (req, res) => {
     try {
-        const shoppingCarts =  await ShoppingCartModel.findAll();
+        const shoppingCarts =  await ShoppingCartModel.findAll({where: {active_status: 1}});
         res.json(shoppingCarts)
     } catch (error) {
         res.json({message: error.message})
@@ -38,7 +38,7 @@ export const createShoppingCart = async (req, res) => {
 //Actualizar registro
 export const updateShoppingCart = async (req, res) => {
     try {
-        await ShoppingCartModel.update(req.body, {where: {id: req.params.id}})
+        await ShoppingCartModel.update({ active_status: 0}, {where: {id: req.params.id}})
         res.json({"message":"Registro actualizado"})
     } catch (error) {
         res.json({message: error.message})
@@ -68,12 +68,11 @@ export const deleteShoppingCart = async (req, res) => {
     }
 }
 
-//Eliminar todos los registros
 export const deleteAllShoppingCart = async (req, res) => {
     try {
       await ShoppingCartModel.destroy({
-        where: {}, // Esto eliminará todos los registros en la tabla
-        truncate: true, // Esto restablecerá el contador de identificación
+        where: {},
+        truncate: true,
       });
   
       res.json({ message: 'Todos los registros han sido eliminados' });

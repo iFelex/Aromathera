@@ -1,9 +1,5 @@
-//importar modelo de jabon
 import OrderClientModel from "../models/OrderClientModel.js";
 
-//** Metodos para el CRUD */
-
-//Mostrar todos los registros
 export const getAllOrderClients = async (req, res) => {
     try {
         const clients =  await OrderClientModel.findAll();
@@ -28,6 +24,7 @@ export const getOrderClient = async (req, res) => {
 //Crear registro
 export const createOrderClient = async (req, res) => {
     try {
+        console.log("Lola body", req.body)
         await OrderClientModel.create(req.body)
         res.json({"message":"Registro creado"})
     } catch (error) {
