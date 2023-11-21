@@ -44,6 +44,24 @@ export const updateOrderClient = async (req, res) => {
     }
 }
 
+export const cancelOrder = async (req, res) => {
+    try {
+        await OrderClientModel.update({ status: "Cancelada"}, {where: {id: req.params.id}})
+        res.json({"message":"Registro actualizado"})
+    } catch (error) {
+        res.json({message: error.message})
+    }
+}
+
+export const approveOrder = async (req, res) => {
+    try {
+        await OrderClientModel.update({ status: "Aprobada"}, {where: {id: req.params.id}})
+        res.json({"message":"Registro actualizado"})
+    } catch (error) {
+        res.json({message: error.message})
+    }
+}
+
 //Eliminar registro
 export const deleteOrderClient = async (req, res) => {
     try {

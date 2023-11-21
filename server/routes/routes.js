@@ -5,7 +5,7 @@ import { createUser, deleteUser, getAllUsers, getUser, updateUser } from '../con
 import { createEgress, deleteEgress, getAllEgress, getEgress, updateEgress } from '../controllers/EgressController.js'
 import { createIncome, deleteIncome, getAllIncomes, getIncome, updateIncome } from '../controllers/IncomeController.js'
 import { createClient, deleteClient, getAllClients, getClient, updateClient } from '../controllers/ClientController.js'
-import { createOrderClient, deleteOrderClient, getAllOrderClients, getOrderClient, updateOrderClient } from '../controllers/OrderClientController.js'
+import { createOrderClient, deleteOrderClient, getAllOrderClients, getOrderClient, updateOrderClient, cancelOrder, approveOrder} from '../controllers/OrderClientController.js'
 import { createShoppingCart, deleteShoppingCart, getAllShoppingCarts, getShoppingCart, updateShoppingCart, deleteAllShoppingCart } from '../controllers/ShoppingCartController.js'
 import { createPreference, deletePreference, getAllPreference, getPreference, updatePreference, deleteAllPreference } from '../controllers/PreferenceController.js'
 import { paymentLink} from '../controllers/PaymentController.js'
@@ -68,6 +68,8 @@ router.get('/getOrderClient/:id', getOrderClient)
 router.post('/createOrderClient/', createOrderClient)
 router.put('/updateOrderClient/:id', updateOrderClient)
 router.delete('/deleteOrderClient/:id', deleteOrderClient)
+router.put('/cancelOrder/:id', cancelOrder)
+router.put('/approveOrder/:id', approveOrder)
 
 router.post('/paymentLink/:amount', paymentLink)
 
