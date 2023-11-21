@@ -179,6 +179,9 @@ function Catalog() {
             <Link to="/catalog">
               <button className="menu-button-catalog">Catálogo</button>
             </Link>
+            <Link to="/createSoap">
+              <button className="menu-button-home">Crea tu jabon</button>
+            </Link>
             <Link to="/cart">
               <button className="cart-button">
                 <img src="./src/imgs/cart.png" alt="Carrito de compras" className="cart-icon" />

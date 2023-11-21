@@ -1,0 +1,282 @@
+/* CreateSoap.css */
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap');
+body {
+  margin: 0;
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.createsoap-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.full-width-container-createsoap {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-createsoap {
+  width: 250px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: #333;
+  border-right: 2px solid #ccc;
+  background-color: #C0D6B1;
+}
+
+.white-background-createsoap {
+  background-color: #E8E3C4;
+  flex: 1;
+}
+
+.logo-container-createsoap {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: -60px;
+}
+
+.logo-createsoap {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.menu-createsoap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.menu-button-createsoap {
+  background-color: #C0D6B1;
+  color: #668461;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+.menu-button-createsoap:active {
+  background-color: #E8E3C4;
+  color: #668461;
+}
+
+.menu-button-last-createsoap {
+  background-color: #C0D6B1;
+  color: #668461;
+  border: none;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: auto;
+  align-self: center;
+  position: absolute;
+  bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+.menu-button-last-createsoap:active {
+  background-color: #668461;
+  color: #E8E3C4;
+}
+
+.product-container-createsoap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 100px 0;
+  background-color: #C0D6B1;
+  height: 600px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.product-display-container-createsoap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  margin-right: 140px;
+}
+
+.product-display-createsoap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
+  margin: 20px 0;
+  background-color: #C0D6B1;
+}
+
+.product-img-small-createsoap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  
+}
+
+.color-palette-and-options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+  background-color: #C0D6B1;
+}
+
+.color-palette-container-createsoap {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  padding: 20px;
+  background-color: #C0D6B1;
+  border-left: 2px solid #ccc;
+  justify-content: flex-start; /* Cambiado de 'center' a 'flex-start' */
+  align-items: center;
+}
+
+.color-palette-createsoap {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px; /* Añadido margen inferior */
+}
+
+.color-options-createsoap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.color-option-createsoap {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+select, input {
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.social-icons-createsoap {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.social-button-createsoap {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 82px;
+  margin-bottom: 20px;
+}
+
+.social-button-img-createsoap {
+  width: 30px;
+  height: 30px;
+}
+
+.social-button-createsoap:hover {
+  background-color: #668461;
+  border-radius: 40%;
+  transition: background-color 0.3s;
+}
+
+.welcome-createsoap {
+  margin-top: 82px;
+  margin-right: 250px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: lighter;
+  font-style: oblique;
+}
+
+.extra-options-createsoap {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.extra-options-createsoap label {
+  display: block;
+  margin-bottom: 5px;
+  font-family: "Quicksand", sans-serif; /* Agregado el estilo de fuente */
+}
+
+.extra-options-createsoap select,
+.extra-options-createsoap input {
+  margin-bottom: 10px;
+  padding: 8px; /* Ajustado el padding para un aspecto más uniforme */
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc; /* Agregado borde */
+  border-radius: 8px; /* Agregado borde redondeado */
+  font-family: "Quicksand", sans-serif; /* Agregado el estilo de fuente */
+}
+
+.message-container {
+  margin-bottom: 20px; /* Ajusta según sea necesario */
+  font-family: 'Tangerine', cursive; /* Aplica el estilo de fuente */
+  font-size: 50px /* Ajusta según sea necesario */;
+}
+
+.payment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; /* Puedes ajustar el margen superior según tus preferencias */
+  margin-right: 400px;
+  width: 10px;
+}
+
+.payment-button {
+  background-color: #668461;
+  color: #E8E3C4;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px; /* Puedes ajustar el margen superior según tus preferencias */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 230px;
+}
+
+.payment-button:hover {
+  background-color: #E8E3C4;
+  color: #668461;
+}

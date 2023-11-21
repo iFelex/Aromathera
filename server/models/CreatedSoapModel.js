@@ -5,8 +5,9 @@ import {DataTypes} from "sequelize";
 
 const CreatedSoapModel = db.define('created_soaps', {
     color: { type: DataTypes.STRING },
-    essence: { type: DataTypes.STRING }, 
-    form: { type: DataTypes.STRING },
+    esencia: { type: DataTypes.STRING }, 
+    forma: { type: DataTypes.STRING },
+    frase_corta: { type: DataTypes.STRING },
 })
 
 export default CreatedSoapModel

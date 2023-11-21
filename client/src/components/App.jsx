@@ -15,6 +15,9 @@ import OrderAdmin from '../pages/OrderAdmin';
 import Catalog from '../pages/Catalog';
 import ShoppingCart from '../pages/ShoppingCart';
 import Preference from '../pages/Preference';
+import CreateSoap from '../pages/CreateSoap';
+import Creation from '../pages/Creations';
+import Transaction from '../pages/Transactions';
 
 function App() {
   return (
@@ -36,6 +39,9 @@ function App() {
         <Route path="/preference" element={<Preference />}></Route>
         <Route path="/order" element={<Order />}></Route>
         <Route path="/orderAdmin" element={<OrderAdmin />}></Route>
+        <Route path="/createSoap" element={<CreateSoap />}></Route>
+        <Route path="/creation" element={<Creation />}></Route>
+        <Route path="/transaction" element={<Transaction />}></Route>
         </Routes>
     </Router>
   );

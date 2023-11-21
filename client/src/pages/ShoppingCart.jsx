@@ -184,6 +184,9 @@ function ShoppingCart() {
             <Link to="/catalog">
               <button className="menu-button-shoppingcarts">Catálogo</button>
             </Link>
+            <Link to="/createSoap">
+              <button className="menu-button-home">Crea tu jabon</button>
+            </Link>
             <Link to="/order">
               <button className="menu-button-shoppingcarts">Mis Pedidos</button>
             </Link>
