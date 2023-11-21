@@ -7,6 +7,7 @@ import { createIncome, deleteIncome, getAllIncomes, getIncome, updateIncome } fr
 import { createClient, deleteClient, getAllClients, getClient, updateClient } from '../controllers/ClientController.js'
 import { createOrderClient, deleteOrderClient, getAllOrderClients, getOrderClient, updateOrderClient, cancelOrder, approveOrder} from '../controllers/OrderClientController.js'
 import { createShoppingCart, deleteShoppingCart, getAllShoppingCarts, getShoppingCart, updateShoppingCart, deleteAllShoppingCart } from '../controllers/ShoppingCartController.js'
+import { createCreatedSoap, deleteCreatedSoap, getAllCreatedSoaps, getCreatedSoap, updateCreatedSoap } from '../controllers/CreatedSoapController.js'
 import { createPreference, deletePreference, getAllPreference, getPreference, updatePreference, deleteAllPreference } from '../controllers/PreferenceController.js'
 import { paymentLink} from '../controllers/PaymentController.js'
 
@@ -50,6 +51,13 @@ router.get('/getEgress/:id', getEgress)
 router.post('/createEgress/', createEgress)
 router.put('/updateEgress/:id', updateEgress)
 router.delete('/deleteEgress/:id', deleteEgress)
+
+router.get('/allCreatedSoap/', getAllCreatedSoaps)
+router.get('/getCreatedSoap/:id', getCreatedSoap)
+router.post('/createCreatedSoap/', createCreatedSoap)
+router.put('/updateCreatedSoap/:id', updateCreatedSoap)
+router.delete('/deleteCreatedSoap/:id', deleteCreatedSoap)
+
 
 router.get('/allIncome/', getAllIncomes)
 router.get('/getIncome/:id', getIncome)
