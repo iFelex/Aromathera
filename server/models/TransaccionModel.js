@@ -4,7 +4,7 @@ import db from "../config/db.js";
 import {DataTypes} from "sequelize";
 
 const TransaccionModel = db.define('transaccions', {
-  client_id: {
+  id_client: {
         type: DataTypes.INTEGER, 
         references: {
           model: 'clients',

@@ -77,12 +77,12 @@ function ShoppingCart() {
       });
       const data = await response.json();
       const paymentLink = data.routeLink;
-    
+
       // Muestra el enlace de pago en la consola
       console.log('Enlace de pago:', paymentLink);
-      
+
       //window.location.href = paymentLink;
-     
+
       // Limpia el estado local
       setShoppingCarts([]);
       setTotalPrice(0);
@@ -108,16 +108,16 @@ function ShoppingCart() {
           stock: cart.stock,
           sale_price: cart.sale_price,
           image: cart.image
-         };
-  
+        };
+
         const response = await axios.post(`http://${serverAddress}:3001/createPreference`, preferenceData);
-  
+
         if (response.status === 200) {
-          console.log("Actualización carrito "+cart.id)
+          console.log("Actualización carrito " + cart.id)
           await axios.patch(`http://${serverAddress}:3001/updateShoppingCart/${cart.id}`);
         }
       }
-  
+
       // Muestra una notificación de éxito
       await Swal.fire({
         icon: 'success',
@@ -125,7 +125,7 @@ function ShoppingCart() {
         text: 'Gracias por su compra!',
         confirmButtonColor: '#668461',
       });
-  
+
       window.location.href = '/catalog';
     } catch (error) {
       console.error('Error moving items to preferences:', error);
@@ -137,35 +137,60 @@ function ShoppingCart() {
       });
     }
   };
-  
+
   const handleAddOrder = async () => {
     try {
-        for (const cart of shoppingCarts) {
-          console.log("Ciclo");
-          const orderClientData = {
-                cart_id: cart.id,
-                status: "Pendiente"
-            };
+      for (const cart of shoppingCarts) {
+        console.log("Ciclo");
+        const orderClientData = {
+          cart_id: cart.id,
+          status: "Pendiente"
+        };
 
-            const res = await axios.post(`http://${serverAddress}:3001/createOrderClient`, orderClientData);
-            console.log(res)
-          }
+        const res = await axios.post(`http://${serverAddress}:3001/createOrderClient`, orderClientData);
+        console.log(res)
+      }
 
     } catch (error) {
-        console.error('Error moving items to OrderClient:', error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Hubo un problema al crear la orden.',
-            confirmButtonColor: '#FF0000',
-        });
+      console.error('Error moving items to OrderClient:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un problema al crear la orden.',
+        confirmButtonColor: '#FF0000',
+      });
     }
-};
+  };
+
+  const handleAddTransaction = async () => {
+    try {
+      for (const cart of shoppingCarts) {
+        console.log("Cicloaa");
+        const transactionData = {
+          id_client: 12,
+          money: totalPrice
+        };
+
+        const res = await axios.post(`http://${serverAddress}:3001/createTransaccion`, transactionData);
+        console.log(res)
+      }
+
+    } catch (error) {
+      console.error('Error moving items to OrderClient:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un problema al crear la orden.',
+        confirmButtonColor: '#FF0000',
+      });
+    }
+  };
 
 
   const handlePaymentAndMoveToPreferences = async () => {
     await handleAddOrder();
     await handleMoveToPreferences();
+    await handleAddTransaction();
     await handlePayment();
   };
 

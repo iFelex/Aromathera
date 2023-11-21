@@ -8,10 +8,8 @@ import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
-import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { serverAddress } from '../config';
-import axios from 'axios';
 
 function Transaction() {
   const [transactions, setTransactions] = useState([]);

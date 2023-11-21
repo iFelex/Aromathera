@@ -87,7 +87,8 @@ function Catalog() {
             sale_price: product.sale_price,
             image: product.image,
             stock: quantity,
-            id_user: 12
+            id_user: 12,
+            active_status: 1
           });
 
           // Muestra una notificación de éxito
