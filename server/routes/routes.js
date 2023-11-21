@@ -3,6 +3,7 @@ import { createSoap, deleteSoap, getAllSoaps, getSoap, updateSoap } from '../con
 import { createProduct, deleteProduct, getAllProducts, getProduct, updateProduct , updateProductStock} from '../controllers/ProductController.js'
 import { createUser, deleteUser, getAllUsers, getUser, updateUser } from '../controllers/UserController.js'
 import { createEgress, deleteEgress, getAllEgress, getEgress, updateEgress } from '../controllers/EgressController.js'
+import { createTransaccion, deleteTransaccion, getAllTransaccions, getTransaccion, updateTransaccion } from '../controllers/TransaccionController.js'
 import { createIncome, deleteIncome, getAllIncomes, getIncome, updateIncome } from '../controllers/IncomeController.js'
 import { createClient, deleteClient, getAllClients, getClient, updateClient } from '../controllers/ClientController.js'
 import { createOrderClient, deleteOrderClient, getAllOrderClients, getOrderClient, updateOrderClient, cancelOrder, approveOrder} from '../controllers/OrderClientController.js'
@@ -51,6 +52,12 @@ router.get('/getEgress/:id', getEgress)
 router.post('/createEgress/', createEgress)
 router.put('/updateEgress/:id', updateEgress)
 router.delete('/deleteEgress/:id', deleteEgress)
+
+router.get('/allTransaccion/', getAllTransaccions)
+router.get('/getTransaccion/:id', getTransaccion)
+router.post('/createTransaccion/', createTransaccion)
+router.put('/updateTransaccion/:id', updateTransaccion)
+router.delete('/deleteTransaccion/:id', deleteTransaccion)
 
 router.get('/allCreatedSoap/', getAllCreatedSoaps)
 router.get('/getCreatedSoap/:id', getCreatedSoap)
