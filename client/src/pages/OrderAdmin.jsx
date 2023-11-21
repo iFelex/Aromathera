@@ -7,6 +7,7 @@ import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import { Link } from 'react-router-dom';
 import { serverAddress } from '../config';
+import Swal from 'sweetalert2';
 
 function Order() {
     const [orders, setOrders] = useState([]);
@@ -46,6 +47,49 @@ function Order() {
         );
     };
 
+    const handleCancelOrder = async (orderId) => {
+        try {
+            await fetch(`http://${serverAddress}:3001/cancelOrder/${orderId}`, {
+                method: 'PUT',
+            });
+            Swal.fire({
+                icon: 'success',
+                title: 'Orden cancelada',
+                text: `La orden fue cancelada`,
+                confirmButtonColor: '#668461',
+            });
+        } catch (error) {
+            console.error('Error cancelando la orden:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un problema al cancelar la orden.',
+                confirmButtonColor: '#FF0000',
+            });
+        }
+    };
+
+    const handleApproveOrder = async (orderId) => {
+        try {
+            await fetch(`http://${serverAddress}:3001/approveOrder/${orderId}`, {
+                method: 'PUT',
+            });
+            Swal.fire({
+                icon: 'success',
+                title: 'Orden aprobada',
+                text: `La orden fue aprobada`,
+                confirmButtonColor: '#668461',
+            });
+        } catch (error) {
+            console.error('Error aprobando la orden:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un problema al aprobar la orden.',
+                confirmButtonColor: '#FF0000',
+            });
+        }
+    };
 
     return (
         <div className="orders-container">
