@@ -1,0 +1,245 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema aromatheratests
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `aromatheratests` ;
+
+-- -----------------------------------------------------
+-- Schema aromatheratests
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `aromatheratests` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `aromatheratests` ;
+
+-- -----------------------------------------------------
+-- Table `aromatheratests`.`clients`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aromatheratests`.`clients` ;
+
+CREATE TABLE IF NOT EXISTS `aromatheratests`.`clients` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(255) NULL DEFAULT NULL,
+  `password` VARCHAR(255) NULL DEFAULT NULL,
+  `full_name` VARCHAR(255) NULL DEFAULT NULL,
+  `email` VARCHAR(255) NULL DEFAULT NULL,
+  `address` VARCHAR(255) NULL DEFAULT NULL,
+  `phone_number` VARCHAR(20) NULL DEFAULT NULL,
+  `createdAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `aromatheratests`.`created_soaps`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aromatheratests`.`created_soaps` ;
+
+CREATE TABLE IF NOT EXISTS `aromatheratests`.`created_soaps` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `color` VARCHAR(255) NULL DEFAULT NULL,
+  `esencia` VARCHAR(255) NULL DEFAULT NULL,
+  `forma` VARCHAR(255) NULL DEFAULT NULL,
+  `frase_corta` VARCHAR(10) NULL DEFAULT NULL,
+  `createdAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `aromatheratests`.`products`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aromatheratests`.`products` ;
+
+CREATE TABLE IF NOT EXISTS `aromatheratests`.`products` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NULL DEFAULT NULL,
+  `presentation` VARCHAR(30) NOT NULL,
+  `stock` INT NOT NULL,
+  `sale_price` DOUBLE NOT NULL,
+  `createdAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `image` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 80
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `aromatheratests`.`egresses`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aromatheratests`.`egresses` ;
+
+CREATE TABLE IF NOT EXISTS `aromatheratests`.`egresses` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `cliente_id` INT NULL DEFAULT NULL,
+  `producto_id` INT NULL DEFAULT NULL,
+  `egress_units` INT NULL DEFAULT NULL,
+  `createdAt` DATE NOT NULL,
+  `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `cliente_id` (`cliente_id` ASC) VISIBLE,
+  INDEX `producto_id` (`producto_id` ASC) VISIBLE,
+  CONSTRAINT `egresses_ibfk_1`
+    FOREIGN KEY (`cliente_id`)
+    REFERENCES `aromatheratests`.`clients` (`id`),
+  CONSTRAINT `egresses_ibfk_2`
+    FOREIGN KEY (`producto_id`)
+    REFERENCES `aromatheratests`.`products` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `aromatheratests`.`incomes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aromatheratests`.`incomes` ;
+
+CREATE TABLE IF NOT EXISTS `aromatheratests`.`incomes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `cliente_id` INT NULL DEFAULT NULL,
+  `producto_id` INT NULL DEFAULT NULL,
+  `income_units` INT NULL DEFAULT NULL,
+  `createdAt` DATE NOT NULL,
+  `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `cliente_id` (`cliente_id` ASC) VISIBLE,
+  INDEX `producto_id` (`producto_id` ASC) VISIBLE,
+  CONSTRAINT `incomes_ibfk_1`
+    FOREIGN KEY (`cliente_id`)
+    REFERENCES `aromatheratests`.`clients` (`id`),
+  CONSTRAINT `incomes_ibfk_2`
+    FOREIGN KEY (`producto_id`)
+    REFERENCES `aromatheratests`.`products` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 8
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `aromatheratests`.`preferences`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aromatheratests`.`preferences` ;
+
+CREATE TABLE IF NOT EXISTS `aromatheratests`.`preferences` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(30) NOT NULL,
+  `presentation` VARCHAR(30) NOT NULL,
+  `stock` INT NOT NULL,
+  `sale_price` DOUBLE NOT NULL,
+  `image` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 24
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `aromatheratests`.`roles`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aromatheratests`.`roles` ;
+
+CREATE TABLE IF NOT EXISTS `aromatheratests`.`roles` (
+  `role_id` INT NOT NULL AUTO_INCREMENT,
+  `role_name` VARCHAR(50) NOT NULL,
+  `description` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`role_id`),
+  UNIQUE INDEX `role_name` (`role_name` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `aromatheratests`.`shopping_carts`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aromatheratests`.`shopping_carts` ;
+
+CREATE TABLE IF NOT EXISTS `aromatheratests`.`shopping_carts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(30) NOT NULL,
+  `presentation` VARCHAR(30) NOT NULL,
+  `stock` INT NOT NULL,
+  `sale_price` DOUBLE NOT NULL,
+  `image` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 46
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `aromatheratests`.`soaps`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aromatheratests`.`soaps` ;
+
+CREATE TABLE IF NOT EXISTS `aromatheratests`.`soaps` (
+  `id` INT NOT NULL,
+  `color` VARCHAR(20) NOT NULL,
+  `form` VARCHAR(20) NOT NULL,
+  `createdAt` DATE NOT NULL,
+  `updatedAt` TEXT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `aromatheratests`.`transaccions`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aromatheratests`.`transaccions` ;
+
+CREATE TABLE IF NOT EXISTS `aromatheratests`.`transaccions` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_client` INT NOT NULL,
+  `money` INT NOT NULL,
+  `createdAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `transaccions_ibfk_1` (`id_client` ASC) VISIBLE,
+  CONSTRAINT `transaccions_ibfk_1`
+    FOREIGN KEY (`id_client`)
+    REFERENCES `aromatheratests`.`clients` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `aromatheratests`.`users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aromatheratests`.`users` ;
+
+CREATE TABLE IF NOT EXISTS `aromatheratests`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `full_name` VARCHAR(60) NOT NULL,
+  `email` VARCHAR(40) NOT NULL,
+  `createdAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `rol` VARCHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 22
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

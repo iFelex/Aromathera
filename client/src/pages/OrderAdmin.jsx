@@ -145,8 +145,12 @@ function Order() {
                                             </td>
                                             <td>
                                                 {/* Nuevos botones de acciones */}
-                                                <button onClick={() => handleCancelOrder(order.id)}>Cancelar</button>
-                                                <button onClick={() => handleApproveOrder(order.id)}>Aprobar</button>
+                                                <button className="cancel-button" onClick={() => handleCancelOrder(order.id)}>
+                                                    Cancelar
+                                                </button>
+                                                <button className="approve-button" onClick={() => handleApproveOrder(order.id)}>
+                                                    Aprobar
+                                                </button>
                                             </td>
                                         </tr>
                                         {expandedCarts[index] && (

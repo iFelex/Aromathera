@@ -172,7 +172,7 @@ body {
     text-align: center;
     overflow-x: hidden;
     max-height: 640px; /* Establece la altura máxima de la tabla */
-    max-width: 1200px;
+
   }
   
   /* Estilos para la tabla */
@@ -233,6 +233,7 @@ body {
     font-weight: bold;
     font-size: 18px;
     cursor: pointer;
+    margin-right: 10px;
   }
   
   /* Estilo del contenido del menú desplegable */
@@ -287,3 +288,5 @@ body {
   .order_table-container h1 {
     margin-left: 210px;
   }
+
+  

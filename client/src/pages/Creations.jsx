@@ -10,7 +10,12 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { serverAddress } from '../config';
 import axios from 'axios';
-
+const colorNames = {
+  '#91F7FF': 'Azul',
+  '#FDFF91': 'Amarillo',
+  '#FF9191': 'Rosado',
+  // Agrega más colores según sea necesario
+};
 function Creation() {
   const [creations, setCreations] = useState([]);
 
@@ -75,7 +80,7 @@ function Creation() {
                 {creations.map((creation) => (
                   <tr key={creation.id}>
                     <td>{creation.createdAt}</td>
-                    <td>{creation.color}</td>
+                    <td>{colorNames[creation.color]}</td>
                     <td>{creation.esencia}</td>
                     <td>{creation.forma}</td>
                     <td>{creation.frase_corta}</td>
