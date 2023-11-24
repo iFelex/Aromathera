@@ -143,14 +143,16 @@ function Order() {
                                                     {expandedCarts[index] ? 'Ocultar' : 'Mostrar'}
                                                 </button>
                                             </td>
-                                            <td>
+                                           <td>
                                                 {/* Nuevos botones de acciones */}
-                                                <button className="cancel-button" onClick={() => handleCancelOrder(order.id)}>
-                                                    Cancelar
-                                                </button>
-                                                <button className="approve-button" onClick={() => handleApproveOrder(order.id)}>
-                                                    Aprobar
-                                                </button>
+                                                <button onClick={() => handleCancelOrder(order.id)}
+                                                disabled={order.status==='Cancelada'}
+                                                className={order.status === 'Cancelada' ? 'disabled-button' : ''}
+                                                >Cancelar</button>
+                                                <button onClick={() => handleApproveOrder(order.id)}
+                                                disabled={order.status==='Aprobada'||order.status==='Cancelada'}
+                                                className={order.status === 'Cancelada' ? 'disabled-button' : ''}
+                                                >Aprobar</button>
                                             </td>
                                         </tr>
                                         {expandedCarts[index] && (
