@@ -287,3 +287,10 @@ body {
   .order_table-container h1 {
     margin-left: 210px;
   }
+
+
+  .disabled-button {
+    background-color: #ccc; /* Puedes ajustar el color gris según tus preferencias */
+    color: #666; /* Puedes ajustar el color del texto según tus preferencias */
+    cursor: not-allowed; /* Cambia el cursor para indicar que no se puede hacer clic */
+}
