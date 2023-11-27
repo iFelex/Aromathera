@@ -6,6 +6,7 @@ import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import favicon from '../imgs/preference.png';
+import cart from '../imgs/cart.png';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
@@ -185,7 +186,7 @@ function Catalog() {
             </Link>
             <Link to="/cart">
               <button className="cart-button">
-                <img src="./src/imgs/cart.png" alt="Carrito de compras" className="cart-icon" />
+                <img src={cart} alt="Carrito de compras" className="cart-icon" />
               </button>
             </Link>
             <Link to="/order">
