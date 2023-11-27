@@ -5,6 +5,7 @@ import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
+import cart from '../imgs/cart.png';
 import { Link } from 'react-router-dom';
 import { serverAddress } from '../config';
 
@@ -63,7 +64,7 @@ function Order() {
             </Link>
             <Link to="/cart">
               <button className="cart-button">
-                <img src="./src/imgs/cart.png" alt="Carrito de compras" className="cart-icon" />
+                <img src={cart} alt="Carrito de compras" className="cart-icon" />
               </button>
             </Link>
             <Link to="/order">
