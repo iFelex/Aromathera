@@ -4,6 +4,7 @@ import '../styles/Creations.css';
 import epayco from '../imgs/epayco.png';
 import logo from '../imgs/logo_transparent.png';
 import facebook from '../imgs/facebook.png';
+import cart from '../imgs/cart.png';
 import twitter from '../imgs/twitter.png';
 import instagram from '../imgs/instagram.png';
 import Swal from 'sweetalert2';
@@ -54,7 +55,7 @@ function Creation() {
             </Link>
             <Link to="/cart">
               <button className="cart-button">
-                <img src="./src/imgs/cart.png" alt="Carrito de compras" className="cart-icon" />
+                <img src={cart} alt="Carrito de compras" className="cart-icon" />
               </button>
             </Link>
             <Link to="/login">
